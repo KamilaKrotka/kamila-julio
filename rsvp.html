@@ -121,8 +121,7 @@
             <p class="lang-text" data-en="Please confirm your attendance for the wedding." data-pl="Prosimy o potwierdzenie obecności na weselu." data-es="Por favor confirma tu asistencia a la boda."></p>
         </div>
 
-        <form id="form" action="/api/rsvp" method="POST">
-            <input type="hidden" name="notify_email" value="kamkrotka@gmail.com">
+        <form id="form" action="https://formsubmit.co/ajax/kamkrotka@gmail.com" method="POST">
             <div class="form-group">
                 <label class="lang-text" data-en="Full Name *" data-pl="Pełne Imię i Nazwisko *" data-es="Nombre Completo *"></label>
                 <input type="text" name="name" required>
@@ -204,24 +203,25 @@
             e.preventDefault();
             try {
                 const formData = new FormData(form);
-                const body = Object.fromEntries(formData.entries());
 
                 const response = await fetch(form.action, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(body),
+                    headers: {
+                        'Accept': 'application/json',
+                    },
+                    body: formData,
                 });
 
+                const resultText = await response.text();
                 if (!response.ok) {
-                    const payload = await response.text();
-                    throw new Error(`Server error: ${response.status} ${payload}`);
+                    throw new Error(`Server error: ${response.status} ${resultText}`);
                 }
 
                 form.style.display = 'none';
                 successMessage.classList.add('active');
             } catch (err) {
                 console.error(err);
-                alert('There was an error submitting your RSVP. Please try again.');
+                alert(`There was an error submitting your RSVP: ${err.message}`);
             }
         });
 
