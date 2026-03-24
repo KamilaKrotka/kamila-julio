@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamila & Julio - Wedding RSVP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f5f1e8;
+            --coral: #d97239;
+            --dark: #2a2a2a;
+            --light-gray: #e8e8e8;
+            --beige: #e6dfd7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background-color: var(--cream);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 1000;
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            font-family: 'Lora', serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            color: var(--dark);
+            padding: 0.25rem 0.5rem;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            color: var(--coral);
+            opacity: 1;
+            font-weight: 600;
+        }
+
+        .lang-btn:hover {
+            opacity: 1;
+        }
+
+        .lang-sep {
+            color: var(--light-gray);
+            margin: 0 0.25rem;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            right: 2rem;
+            z-index: 999;
+            padding: 2rem 0;
+        }
+
+        nav a {
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 0.95rem;
+            margin-left: 2rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--coral);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4rem 5rem;
+            gap: 4rem;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--beige) 100%);
+        }
+
+        .hero-content {
+            flex: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-image {
+            flex: 1;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .date {
+            font-size: 0.95rem;
+            color: var(--coral);
+            letter-spacing: 3px;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: var(--dark);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin-bottom: 3rem;
+            max-width: 90%;
+            line-height: 1.8;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-family: 'Lora', serif;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border-radius: 0;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background-color: var(--coral);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #c25e2a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(217, 114, 57, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--coral);
+            border: 2px solid var(--coral);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--coral);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* RSVP Form Section */
+        .rsvp-section {
+            min-height: 100vh;
+            padding: 5rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rsvp-section.active {
+            display: flex;
+        }
+
+        .rsvp-container {
+            max-width: 600px;
+            width: 100%;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .rsvp-container h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .rsvp-container p {
+            color: #666;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.95rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            font-family: 'Lora', serif;
+            font-size: 1rem;
+            border: 1px solid var(--light-gray);
+            background-color: white;
+            color: var(--dark);
+            border-radius: 0;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--coral);
+            box-shadow: 0 0 0 3px rgba(217, 114, 57, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-footer {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        .btn-submit {
+            flex: 1;
+            background-color: var(--coral);
+            color: white;
+        }
+
+        .btn-back {
+            flex: 1;
+            background-color: transparent;
+            color: var(--coral);
+            border: 2px solid var(--coral);
+        }
+
+        .btn-submit:hover {
+            background-color: #c25e2a;
+            transform: translateY(-2px);
+        }
+
+        .btn-back:hover {
+            background-color: var(--coral);
+            color: white;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .success-message.active {
+            display: block;
+        }
+
+        .success-message h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--coral);
+        }
+
+        .success-message p {
+            font-size: 1.05rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                padding: 2rem;
+                min-height: auto;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav {
+                position: static;
+                padding: 0;
+                margin-bottom: 2rem;
+            }
+
+            nav a {
+                display: block;
+                margin: 0.5rem 0;
+            }
+
+            .language-switcher {
+                position: static;
+                width: fit-content;
+                margin-bottom: 2rem;
+            }
+
+            .rsvp-section {
+                padding: 2rem;
+                min-height: auto;
+            }
+
+            .rsvp-container h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Text visibility for hidden sections */
+        .hidden-text {
+            display: none;
+        }
+
+        /* Decorative element */
+        .ornament {
+            text-align: center;
+            color: var(--coral);
+            font-size: 1.5rem;
+            margin: 2rem 0;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="pl">PL</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="es">ES</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="date lang-text" data-en="— 29.05.2027 —" data-pl="— 29.05.2027 —" data-es="— 29.05.2027 —"></div>
+            <h1 class="lang-text" data-en="Kamila & Julio" data-pl="Kamila & Julio" data-es="Kamila & Julio"></h1>
+            <p class="lang-text" 
+               data-en="Welcome to our wedding celebration set amidst the timeless beauty of the Catalunya mountains. A weekend of romance, nature, and shared memories in the heart of the Mediterranean."
+               data-pl="Zapraszamy do naszej ceremonii ślubnej wśród piękna gór Katalonii. Weekend pełen romansu, przyrody i wspólnych wspomnień w sercu Morza Śródziemnego."
+               data-es="Bienvenido a nuestra celebración de bodas en medio de la belleza atemporal de las montañas de Cataluña. Un fin de semana de romance, naturaleza y recuerdos compartidos en el corazón del Mediterráneo."></p>
+            
+            <div class="button-group">
+                <button class="btn btn-primary scroll-to-rsvp lang-text" data-en="CONFIRM PRESENCE" data-pl="POTWIERDŹ OBECNOŚĆ" data-es="CONFIRMAR PRESENCIA"></button>
+                <button class="btn btn-secondary lang-text" data-en="WEDDING DAY INFO" data-pl="INFORMACJE O ŚLUBIE" data-es="INFORMACIÓN DEL EVENTO"></button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1469371670720-3016d6ce3482?w=600&h=800&fit=crop" alt="Wedding landscape">
+        </div>
+    </section>
+
+    <!-- RSVP Form Section -->
+    <section class="rsvp-section" id="rsvp">
+        <div class="rsvp-container">
+            <div class="rsvp-form" id="rsvpForm">
+                <h2 class="lang-text" data-en="Confirm Your Presence" data-pl="Potwierdź Swoją Obecność" data-es="Confirma Tu Presencia"></h2>
+                <p class="lang-text" 
+                   data-en="We can't wait to celebrate with you. Please fill in your details below."
+                   data-pl="Nie możemy się doczekać, aby świętować z Tobą. Proszę podaj swoje dane poniżej."
+                   data-es="No podemos esperar para celebrar contigo. Por favor, completa tus datos a continuación."></p>
+
+                <form id="form" action="https://api.basin.io/submit/2b42ac7d63a2" method="POST">
+                    <div class="form-group">
+                        <label class="lang-text" data-en="Full Name *" data-pl="Pełne Imię i Nazwisko *" data-es="Nombre Completo *"></label>
+                        <input type="text" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="lang-text" data-en="Email Address *" data-pl="Adres E-mail *" data-es="Correo Electrónico *"></label>
+                        <input type="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="lang-text" data-en="Phone Number" data-pl="Numer Telefonu" data-es="Número de Teléfono"></label>
+                        <input type="tel" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="lang-text" data-en="Will You Be Attending? *" data-pl="Czy Będziesz Obecny/a? *" data-es="¿Asistirás? *"></label>
+                        <select name="attendance" required>
+                            <option value="">-- Select --</option>
+                            <option class="hidden-text" data-en="Yes, I'll be there" data-pl="Tak, będę tam" data-es="Sí, estaré allá">Yes, I'll be there</option>
+                            <option class="hidden-text" data-en="No, I can't make it" data-pl="Nie, nie mogę przyjść" data-es="No, no puedo asistir">No, I can't make it</option>
+                            <option class="hidden-text" data-en="Maybe" data-pl="Może" data-es="Quizás">Maybe</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="lang-text" data-en="Number of Guests (including yourself)" data-pl="Liczba Gości (w tym Ty)" data-es="Número de Huéspedes (incluido tú)"></label>
+                        <input type="number" name="guests" min="1" value="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="lang-text" data-en="Dietary Restrictions" data-pl="Ograniczenia Dietetyczne" data-es="Restricciones Dietéticas"></label>
+                        <textarea name="dietary"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="lang-text" data-en="Additional Comments" data-pl="Dodatkowe Uwagi" data-es="Comentarios Adicionales"></label>
+                        <textarea name="comments"></textarea>
+                    </div>
+
+                    <div class="form-footer">
+                        <button type="button" class="btn btn-back scroll-to-home lang-text" data-en="BACK" data-pl="WSTECZ" data-es="VOLVER"></button>
+                        <button type="submit" class="btn btn-submit lang-text" data-en="SUBMIT RSVP" data-pl="WYŚLIJ POTWIERDZENIE" data-es="ENVIAR CONFIRMACIÓN"></button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                <h2 class="lang-text" data-en="Thank You!" data-pl="Dziękujemy!" data-es="¡Gracias!"></h2>
+                <p class="lang-text" 
+                   data-en="We've received your RSVP. See you soon!"
+                   data-pl="Otrzymaliśmy Twoje potwierdzenie. Do zobaczenia!"
+                   data-es="Hemos recibido tu confirmación. ¡Nos vemos pronto!"></p>
+                <button class="btn btn-primary scroll-to-home lang-text" data-en="BACK TO HOME" data-pl="WRÓĆ NA STRONĘ GŁÓWNĄ" data-es="VOLVER AL INICIO"></button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Language Management
+        const currentLanguage = { lang: 'en' };
+
+        const translations = {
+            en: {
+                'attendance-yes': 'Yes, I\'ll be there',
+                'attendance-no': 'No, I can\'t make it',
+                'attendance-maybe': 'Maybe'
+            },
+            pl: {
+                'attendance-yes': 'Tak, będę tam',
+                'attendance-no': 'Nie, nie mogę przyjść',
+                'attendance-maybe': 'Może'
+            },
+            es: {
+                'attendance-yes': 'Sí, estaré allá',
+                'attendance-no': 'No, no puedo asistir',
+                'attendance-maybe': 'Quizás'
+            }
+        };
+
+        function setLanguage(lang) {
+            currentLanguage.lang = lang;
+            
+            // Update active language button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+
+            // Update all text elements
+            document.querySelectorAll('.lang-text').forEach(el => {
+                const text = el.getAttribute(`data-${lang}`);
+                if (text) {
+                    el.textContent = text;
+                }
+            });
+
+            // Update select options
+            const attendanceSelect = document.querySelector('select[name="attendance"]');
+            if (attendanceSelect) {
+                attendanceSelect.querySelector(`option[value="Yes, I'll be there"]`).textContent = translations[lang]['attendance-yes'];
+                attendanceSelect.querySelector(`option[value="No, I can't make it"]`).textContent = translations[lang]['attendance-no'];
+                attendanceSelect.querySelector(`option[value="Maybe"]`).textContent = translations[lang]['attendance-maybe'];
+            }
+        }
+
+        // Language button listeners
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                setLanguage(btn.getAttribute('data-lang'));
+            });
+        });
+
+        // Scroll to RSVP
+        document.querySelectorAll('.scroll-to-rsvp').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.getElementById('home').style.display = 'none';
+                document.getElementById('rsvp').classList.add('active');
+                window.scrollTo(0, 0);
+            });
+        });
+
+        // Scroll to Home
+        document.querySelectorAll('.scroll-to-home').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.getElementById('home').style.display = 'flex';
+                document.getElementById('rsvp').classList.remove('active');
+                document.getElementById('rsvpForm').style.display = 'block';
+                document.getElementById('successMessage').classList.remove('active');
+                window.scrollTo(0, 0);
+            });
+        });
+
+        // Form Submission
+        document.getElementById('form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            try {
+                await fetch('https://api.basin.io/submit/2b42ac7d63a2', {
+                    method: 'POST',
+                    body: new FormData(e.target)
+                });
+
+                document.getElementById('rsvpForm').style.display = 'none';
+                document.getElementById('successMessage').classList.add('active');
+            } catch (error) {
+                console.error('Error:', error);
+                alert('There was an error submitting your RSVP. Please try again.');
+            }
+        });
+
+        // Initialize
+        setLanguage('en');
+    </script>
+</body>
+</html>
