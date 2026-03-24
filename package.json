@@ -1,0 +1,24 @@
+{
+  "name": "kamila-julio",
+  "version": "1.0.0",
+  "description": "Kamila and Julio - wedding",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KamilaKrotka/kamila-julio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/KamilaKrotka/kamila-julio/issues"
+  },
+  "homepage": "https://github.com/KamilaKrotka/kamila-julio#readme",
+  "dependencies": {
+    "@sendgrid/mail": "^8.1.6"
+  }
+}
