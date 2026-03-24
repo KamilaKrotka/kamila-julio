@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamila & Julio - RSVP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f5f1e8;
+            --coral: #d97239;
+            --dark: #2a2a2a;
+            --light-gray: #e8e8e8;
+            --beige: #e6dfd7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background-color: var(--cream);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,.08);
+        }
+
+        .top-bar {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-family: 'Lora', serif;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border-radius: 0;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background-color: var(--coral);
+            color: white;
+        }
+
+        .btn-primary:hover { background-color: #c25e2a; }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--coral);
+            border: 2px solid var(--coral);
+        }
+
+        .btn-secondary:hover { background-color: var(--coral); color: white; }
+
+        .form-group { margin-bottom: 1.8rem; }
+
+        label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+        input, select, textarea {
+            width: 100%; padding: 0.85rem 1rem; border: 1px solid var(--light-gray);
+            background-color: white; color: var(--dark); border-radius: 0;
+        }
+
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--coral); box-shadow: 0 0 0 3px rgba(217,114,57,.1); }
+
+        .form-footer { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+        .success-message { display: none; text-align: center; }
+        .success-message.active { display: block; }
+
+        .language-switcher { position: fixed; top: 1rem; right: 1rem; z-index: 1000; display: flex; gap: 0.5rem; background: rgba(255,255,255,.9); padding: 0.5rem 0.75rem; border-radius: 4px; }
+
+        .lang-btn { background: none; border: none; cursor: pointer; color: var(--dark); opacity: .6; }
+        .lang-btn.active { opacity: 1; color: var(--coral); }
+
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .form-footer { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <span>|</span>
+        <button class="lang-btn" data-lang="pl">PL</button>
+        <span>|</span>
+        <button class="lang-btn" data-lang="es">ES</button>
+    </div>
+
+    <div class="container">
+        <div class="top-bar">
+            <div class="date lang-text" data-en="— 29.05.2027 —" data-pl="— 29.05.2027 —" data-es="— 29.05.2027 —"></div>
+            <h1 class="lang-text" data-en="Kamila & Julio RSVP" data-pl="Kamila & Julio RSVP" data-es="Kamila & Julio RSVP"></h1>
+            <p class="lang-text" data-en="Please confirm your attendance for the wedding." data-pl="Prosimy o potwierdzenie obecności na weselu." data-es="Por favor confirma tu asistencia a la boda."></p>
+        </div>
+
+        <form id="form" action="https://api.basin.io/submit/2b42ac7d63a2" method="POST">
+            <div class="form-group">
+                <label class="lang-text" data-en="Full Name *" data-pl="Pełne Imię i Nazwisko *" data-es="Nombre Completo *"></label>
+                <input type="text" name="name" required>
+            </div>
+            <div class="form-group">
+                <label class="lang-text" data-en="Email Address *" data-pl="Adres E-mail *" data-es="Correo Electrónico *"></label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label class="lang-text" data-en="Phone Number" data-pl="Numer Telefonu" data-es="Número de Teléfono"></label>
+                <input type="tel" name="phone">
+            </div>
+            <div class="form-group">
+                <label class="lang-text" data-en="Will You Be Attending? *" data-pl="Czy Będziesz Obecny/a? *" data-es="¿Asistirás? *"></label>
+                <select name="attendance" required>
+                    <option value="">-- Select --</option>
+                    <option value="yes" data-en="Yes, I\'ll be there" data-pl="Tak, będę tam" data-es="Sí, estaré allá">Yes, I\'ll be there</option>
+                    <option value="no" data-en="No, I can\'t make it" data-pl="Nie, nie mogę przyjść" data-es="No, no puedo asistir">No, I can\'t make it</option>
+                    <option value="maybe" data-en="Maybe" data-pl="Może" data-es="Quizás">Maybe</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="lang-text" data-en="Number of Guests (including yourself)" data-pl="Liczba Gości (w tym Ty)" data-es="Número de Huéspedes (incluido tú)"></label>
+                <input type="number" name="guests" min="1" value="1">
+            </div>
+            <div class="form-group">
+                <label class="lang-text" data-en="Dietary Restrictions" data-pl="Ograniczenia Dietetyczne" data-es="Restricciones Dietéticas"></label>
+                <textarea name="dietary"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="lang-text" data-en="Additional Comments" data-pl="Dodatkowe Uwagi" data-es="Comentarios Adicionales"></label>
+                <textarea name="comments"></textarea>
+            </div>
+            <div class="form-footer">
+                <a href="index.html" class="btn btn-secondary lang-text" data-en="BACK" data-pl="WSTECZ" data-es="VOLVER">BACK</a>
+                <button type="submit" class="btn btn-primary lang-text" data-en="SUBMIT RSVP" data-pl="WYŚLIJ POTWIERDZENIE" data-es="ENVIAR CONFIRMACIÓN">SUBMIT RSVP</button>
+            </div>
+        </form>
+
+        <div class="success-message" id="successMessage">
+            <h2 class="lang-text" data-en="Thank You!" data-pl="Dziękujemy!" data-es="¡Gracias!">Thank You!</h2>
+            <p class="lang-text" data-en="We've received your RSVP. See you soon!" data-pl="Otrzymaliśmy Twoje potwierdzenie. Do zobaczenia!" data-es="Hemos recibido tu confirmación. ¡Nos vemos pronto!">We've received your RSVP. See you soon!</p>
+            <a href="index.html" class="btn btn-primary lang-text" data-en="BACK TO HOME" data-pl="WRÓĆ NA STRONĘ GŁÓWNĄ" data-es="VOLVER AL INICIO">BACK TO HOME</a>
+        </div>
+    </div>
+
+    <script>
+        const currentLanguage = { lang: 'en' };
+
+        const translations = {
+            en: { 'attendance-yes': "Yes, I'll be there", 'attendance-no': "No, I can't make it", 'attendance-maybe': 'Maybe' },
+            pl: { 'attendance-yes': 'Tak, będę tam', 'attendance-no': 'Nie, nie mogę przyjść', 'attendance-maybe': 'Może' },
+            es: { 'attendance-yes': 'Sí, estaré allá', 'attendance-no': 'No, no puedo asistir', 'attendance-maybe': 'Quizás' },
+        };
+
+        function setLanguage(lang) {
+            currentLanguage.lang = lang;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+
+            document.querySelectorAll('.lang-text').forEach(el => {
+                const text = el.getAttribute(`data-${lang}`);
+                if (text) el.textContent = text;
+            });
+
+            const attendanceSelect = document.querySelector('select[name="attendance"]');
+            if (attendanceSelect) {
+                attendanceSelect.querySelector('option[value="yes"]').textContent = translations[lang]['attendance-yes'];
+                attendanceSelect.querySelector('option[value="no"]').textContent = translations[lang]['attendance-no'];
+                attendanceSelect.querySelector('option[value="maybe"]').textContent = translations[lang]['attendance-maybe'];
+            }
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang'))));
+
+        const form = document.getElementById('form');
+        const successMessage = document.getElementById('successMessage');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            try {
+                await fetch(form.action, { method: 'POST', body: new FormData(form) });
+                form.style.display = 'none';
+                successMessage.classList.add('active');
+            } catch (err) {
+                console.error(err);
+                alert('There was an error submitting your RSVP. Please try again.');
+            }
+        });
+
+        setLanguage('en');
+    </script>
+</body>
+</html>
