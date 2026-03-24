@@ -203,7 +203,20 @@
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             try {
-                await fetch(form.action, { method: 'POST', body: new FormData(form) });
+                const formData = new FormData(form);
+                const body = Object.fromEntries(formData.entries());
+
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body),
+                });
+
+                if (!response.ok) {
+                    const payload = await response.text();
+                    throw new Error(`Server error: ${response.status} ${payload}`);
+                }
+
                 form.style.display = 'none';
                 successMessage.classList.add('active');
             } catch (err) {
