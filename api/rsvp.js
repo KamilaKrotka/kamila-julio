@@ -1,9 +1,9 @@
 const sgMail = require('@sendgrid/mail');
 
 module.exports = async (req, res) => {
+  // 1. Allow Vercel to handle the request properly
   if (req.method !== 'POST') {
-    res.status(405).json({ error: 'Only POST allowed' });
-    return;
+    return res.status(405).json({ error: 'Only POST allowed' });
   }
 
   const {
@@ -17,40 +17,49 @@ module.exports = async (req, res) => {
     notify_email,
   } = req.body;
 
+  // 2. Configuration
   const apiKey = process.env.SENDGRID_API_KEY;
+  // This 'from' email MUST be verified in your SendGrid dashboard
   const fromEmail = process.env.SENDGRID_FROM_EMAIL || 'no-reply@kamila-julio.com';
   const toEmail = notify_email || process.env.RSVP_NOTIFY_EMAIL || 'kamkrotka@gmail.com';
 
   if (!apiKey) {
-    return res.status(500).json({ error: 'SENDGRID_API_KEY is not set in environment' });
+    return res.status(500).json({ error: 'SENDGRID_API_KEY is missing in Vercel settings' });
   }
 
   sgMail.setApiKey(apiKey);
 
-  const subject = `RSVP received from ${name || 'Guest'}`;
+  // 3. Email Content
+  const subject = `Wedding RSVP: ${name || 'New Guest'}`;
   const body = `
+    New RSVP Received:
+    --------------------------
     Name: ${name || '-'}
     Email: ${email || '-'}
     Phone: ${phone || '-'}
     Attendance: ${attendance || '-'}
-    Guests: ${guests || '-'}
-    Dietary: ${dietary || '-'}
+    Number of Guests: ${guests || '-'}
+    Dietary Info: ${dietary || '-'}
     Comments: ${comments || '-'}
   `;
 
   const msg = {
     to: toEmail,
     from: fromEmail,
-    subject,
+    subject: subject,
     text: body,
-    html: `<pre>${body}</pre>`,
+    html: `<div style="font-family: sans-serif; white-space: pre-wrap;">${body}</div>`,
   };
 
+  // 4. Send the Email
   try {
     await sgMail.send(msg);
     return res.status(200).json({ success: true, message: 'RSVP sent' });
   } catch (error) {
-    console.error('SendGrid error', error);
-    return res.status(500).json({ error: 'Could not send email', details: error.message || error.toString() });
+    console.error('SendGrid error:', error);
+    return res.status(500).json({ 
+      error: 'Could not send email', 
+      details: error.response ? error.response.body : error.message 
+    });
   }
 };
