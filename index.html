@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kamila & Julio - Wedding RSVP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Prata&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <style>
         :root {
             --cream: #f5f1e8;
@@ -25,7 +25,7 @@
         }
 
         body {
-            font-family: 'Lora', serif;
+            font-family: 'Inter', serif;
             background-color: var(--cream);
             color: var(--dark);
             line-height: 1.6;
@@ -48,7 +48,7 @@
         .lang-btn {
             background: none;
             border: none;
-            font-family: 'Lora', serif;
+            font-family: 'Inter', serif;
             font-size: 0.95rem;
             cursor: pointer;
             color: var(--dark);
@@ -167,47 +167,58 @@
             line-height: 1.8;
         }
 
-        .button-group {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
+        :root {
+    /* This matches the burnt-orange color in your image */
+    --coral: #c85a1a; 
+    --bg-cream: #f6f3ed;
+}
 
-        .btn {
-            padding: 1rem 2.5rem;
-            font-family: 'Lora', serif;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            border-radius: 0;
-            font-weight: 500;
-        }
+.button-group {
+    display: flex;
+    gap: 1.2rem; /* Adjusted gap to match image proportion */
+    margin-bottom: 2rem;
+    justify-content: center; /* Centers buttons if needed */
+}
 
-        .btn-primary {
-            background-color: var(--coral);
-            color: white;
-        }
+.btn {
+    padding: 1.2rem 2.8rem; /* Slightly taller and wider */
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em; /* Elegant spacing between letters */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 0; /* Keeps them perfectly square */
+    font-weight: 400; /* Regular weight looks more like the image */
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
 
-        .btn-primary:hover {
-            background-color: #c25e2a;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(217, 114, 57, 0.2);
-        }
+/* The "Confirm Presence" button (Solid) */
+.btn-primary {
+    background-color: var(--coral);
+    color: #ffffff;
+    border: 1px solid var(--coral); /* Thin border */
+}
 
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--coral);
-            border: 2px solid var(--coral);
-        }
+.btn-primary:hover {
+    background-color: #ac4d16; /* Slightly darker on hover */
+    border-color: #ac4d16;
+}
 
-        .btn-secondary:hover {
-            background-color: var(--coral);
-            color: white;
-            transform: translateY(-2px);
-        }
+/* The "Wedding Day Info" button (Outline) */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--coral);
+    /* The image has a very thin 1px border */
+    border: 1px solid var(--coral); 
+}
+
+.btn-secondary:hover {
+    background-color: rgba(200, 90, 26, 0.05); /* Very light tint on hover */
+    color: var(--coral);
+}
 
         /* RSVP Form Section */
         .rsvp-section {
