@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kamila & Julio - RSVP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:wght@400;600;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --cream: #f5f1e8;
-            --coral: #d97239;
+            --coral: #95390A;
+            --brown: #AB623F;
             --dark: #2a2a2a;
             --light-gray: #e8e8e8;
             --beige: #e6dfd7;
@@ -25,7 +26,7 @@
         }
 
         body {
-            font-family: 'Lora', serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--cream);
             color: var(--dark);
             line-height: 1.6;
@@ -33,8 +34,12 @@
             padding: 2rem;
         }
 
-        h1, h2 {
+        h1 {
             font-family: 'Playfair Display', serif;
+        }
+
+        h2 {
+            font-family: 'Inter', sans-serif;
         }
 
         .container {
@@ -51,32 +56,44 @@
         }
 
         .btn {
-            padding: 1rem 2.5rem;
-            font-family: 'Lora', serif;
-            font-size: 0.95rem;
+            padding: 0.85rem 1.6rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            border: none;
+            letter-spacing: 0.12em;
+            border: 1px solid transparent;
             cursor: pointer;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             border-radius: 0;
             font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 11rem;
+            max-width: 16rem;
+            white-space: normal;
+            text-decoration: none;
+            text-align: center;
         }
 
         .btn-primary {
             background-color: var(--coral);
             color: white;
+            border: 1px solid var(--coral);
         }
 
-        .btn-primary:hover { background-color: #c25e2a; }
+        .btn-primary:hover { background-color: var(--brown); }
 
         .btn-secondary {
             background-color: transparent;
             color: var(--coral);
-            border: 2px solid var(--coral);
+            border: 1px solid var(--coral);
         }
 
-        .btn-secondary:hover { background-color: var(--coral); color: white; }
+        .btn-secondary:hover {
+            background-color: rgba(200, 90, 26, 0.05);
+            color: var(--coral);
+        }
 
         .form-group { margin-bottom: 1.8rem; }
 
@@ -93,10 +110,42 @@
         .success-message { display: none; text-align: center; }
         .success-message.active { display: block; }
 
-        .language-switcher { position: fixed; top: 1rem; right: 1rem; z-index: 1000; display: flex; gap: 0.5rem; background: rgba(255,255,255,.9); padding: 0.5rem 0.75rem; border-radius: 4px; }
+        .language-switcher {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+        }
 
-        .lang-btn { background: none; border: none; cursor: pointer; color: var(--dark); opacity: .6; }
-        .lang-btn.active { opacity: 1; color: var(--coral); }
+        .lang-btn {
+            background: none;
+            border: none;
+            font-family: 'Inter', serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            color: var(--dark);
+            margin-bottom: 2rem;
+        }
+
+        .lang-btn.active {
+            color: var(--coral);
+            opacity: 1;
+            font-weight: 600;
+        }
+
+        .lang-btn:hover {
+            opacity: 1;
+            color: var(--brown);
+        }
+
+        .lang-sep {
+            color: var(--light-gray);
+            margin: 0 0.25rem;
+        }
 
 
         @media (max-width: 768px) {
@@ -108,15 +157,15 @@
 <body>
     <div class="language-switcher">
         <button class="lang-btn active" data-lang="en">EN</button>
-        <span>|</span>
+        <span class="lang-sep">|</span>
         <button class="lang-btn" data-lang="pl">PL</button>
-        <span>|</span>
+        <span class="lang-sep">|</span>
         <button class="lang-btn" data-lang="es">ES</button>
     </div>
 
     <div class="container">
         <div class="top-bar">
-            <div class="date lang-text" data-en="— 29.05.2027 —" data-pl="— 29.05.2027 —" data-es="— 29.05.2027 —"></div>
+            <div class="date lang-text" data-en="— 22.05.2027 —" data-pl="— 22.05.2027 —" data-es="— 22.05.2027 —"></div>
             <h1 class="lang-text" data-en="Kamila & Julio RSVP" data-pl="Kamila & Julio RSVP" data-es="Kamila & Julio RSVP"></h1>
             <p class="lang-text" data-en="Please confirm your attendance for the wedding." data-pl="Prosimy o potwierdzenie obecności na weselu." data-es="Por favor confirma tu asistencia a la boda."></p>
         </div>
@@ -155,7 +204,7 @@
                 <textarea name="comments"></textarea>
             </div>
             <div class="form-footer">
-                <a href="index.html" class="btn btn-secondary lang-text" data-en="BACK" data-pl="WSTECZ" data-es="VOLVER">BACK</a>
+                <a href="index.html" class="btn btn-secondary lang-text lang-link" data-en="BACK" data-pl="WSTECZ" data-es="VOLVER">BACK</a>
                 <button type="submit" class="btn btn-primary lang-text" data-en="SUBMIT RSVP" data-pl="WYŚLIJ POTWIERDZENIE" data-es="ENVIAR CONFIRMACIÓN">SUBMIT RSVP</button>
             </div>
         </form>
@@ -176,8 +225,35 @@
             es: { 'attendance-yes': 'Sí, estaré allá', 'attendance-no': 'No, no puedo asistir', 'attendance-maybe': 'Quizás' },
         };
 
+        const STORAGE_KEY = 'weddingLang';
+
+        function getSavedLanguage() {
+            const urlLang = new URLSearchParams(window.location.search).get('lang');
+            if (['en', 'pl', 'es'].includes(urlLang)) {
+                return urlLang;
+            }
+
+            const storedLang = localStorage.getItem(STORAGE_KEY);
+            if (['en', 'pl', 'es'].includes(storedLang)) {
+                return storedLang;
+            }
+
+            return 'en';
+        }
+
+        function updateLangLinks(lang) {
+            document.querySelectorAll('a.lang-link').forEach(link => {
+                const href = link.getAttribute('href') || '';
+                const [pathWithQuery, hash = ''] = href.split('#');
+                const [path] = pathWithQuery.split('?');
+                const newHref = path + '?lang=' + encodeURIComponent(lang) + (hash ? '#' + hash : '');
+                link.setAttribute('href', newHref);
+            });
+        }
+
         function setLanguage(lang) {
             currentLanguage.lang = lang;
+            localStorage.setItem(STORAGE_KEY, lang);
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
 
@@ -192,6 +268,8 @@
                 attendanceSelect.querySelector('option[value="no"]').textContent = translations[lang]['attendance-no'];
                 attendanceSelect.querySelector('option[value="maybe"]').textContent = translations[lang]['attendance-maybe'];
             }
+
+            updateLangLinks(lang);
         }
 
         document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang'))));
@@ -224,7 +302,7 @@
             }
         });
 
-        setLanguage('en');
+        setLanguage(getSavedLanguage());
     </script>
 </body>
 </html>
