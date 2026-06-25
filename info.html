@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamila & Julio - Wedding Day Info</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:wght@400;600;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #f5f1e8;
+            --coral: #95390A;
+            --brown: #AB623F;
+            --dark: #2a2a2a;
+            --light-gray: #e8e8e8;
+            --beige: #e6dfd7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cream);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        h2 {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,.08);
+        }
+
+        .top-bar {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border-radius: 0;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background-color: var(--coral);
+            color: white;
+        }
+
+        .btn-primary:hover { background-color: #c25e2a; }
+
+        .btn-secondary {
+    background-color: transparent;
+    color: var(--coral);
+    /* The image has a very thin 1px border */
+    border: 1px solid var(--coral); 
+}
+
+.btn-secondary:hover {
+    background-color: rgba(200, 90, 26, 0.05); /* Very light tint on hover */
+    color: var(--coral);
+}
+
+        .form-group { margin-bottom: 1.8rem; }
+
+        label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+        input, select, textarea {
+            width: 100%; padding: 0.85rem 1rem; border: 1px solid var(--light-gray);
+            background-color: white; color: var(--dark); border-radius: 0;
+        }
+
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--coral); box-shadow: 0 0 0 3px rgba(217,114,57,.1); }
+
+        .form-footer { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+        .info-sections {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            padding: 1.8rem;
+            border: 1px solid var(--light-gray);
+            background-color: white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .info-card h2 {
+            font-size: 1.7rem;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+        }
+
+        .info-card p {
+            color: #4a4a4a;
+            line-height: 1.75;
+        }
+
+        .info-card a {
+            color: var(--coral);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .info-card a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+        }
+
+        .success-message { display: none; text-align: center; }
+        .success-message.active { display: block; }
+
+        .language-switcher {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            font-family: 'Inter', serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            color: var(--dark);
+            margin-bottom: 2rem;
+        }
+
+        .lang-btn.active {
+            color: var(--coral);
+            opacity: 1;
+            font-weight: 600;
+        }
+
+        .lang-btn:hover {
+            opacity: 1;
+            color: var(--brown);
+        }
+
+        .lang-sep {
+            color: var(--light-gray);
+            margin: 0 0.25rem;
+        }
+
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            .form-footer { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="pl">PL</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="es">ES</button>
+    </div>
+
+    <div class="container">
+        <div class="top-bar">
+            <div class="date lang-text" data-en="— 22.05.2027 —" data-pl="— 22.05.2027 —" data-es="— 22.05.2027 —"></div>
+            <h1 class="lang-text" data-en="Kamila & Julio" data-pl="Kamila & Julio" data-es="Kamila & Julio"></h1>
+            <p class="lang-text" data-en="Welcome to our wedding day guide. Here are the ceremony, venue, transport, and contact details for the celebration." data-pl="Witamy w przewodniku po dniu ślubu. Poniżej znajdują się informacje o ceremonii, miejscu, transporcie i kontakcie." data-es="Bienvenido a nuestra guía del día de la boda. Aquí están los detalles de la ceremonia, el lugar, el transporte y el contacto."></p>
+        </div>
+
+        <div class="info-sections">
+            <article class="info-card">
+                <h2 class="lang-text" data-en="Ceremony" data-pl="Ceremonia" data-es="Ceremonia"></h2>
+                <p><strong class="lang-text" data-en="Ceremony" data-pl="Ceremonia" data-es="Ceremonia"></strong><br>
+                <a href="https://maps.app.goo.gl/H7i2UPFWhgUpZrVu6" target="_blank">Església de Sant Andreu de Sagàs</a> | 22.05.2026 | 16:00</p>
+                <p style="margin-top: 1rem;"><strong class="lang-text" data-en="Wedding Party" data-pl="Wesele" data-es="Banquete y Fiesta"></strong><br>
+                <a href="https://maps.app.goo.gl/BNmfxL95TtsJcveGA" target="_blank">Cal Cirera</a></p>
+            </article>
+            <article class="info-card">
+                <h2 class="lang-text" data-en="Transport" data-pl="Transport" data-es="Transporte"></h2>
+                <p class="lang-text" data-en="Heading straight to the ceremony on Saturday? A shuttle bus will be provided from Barcelona to Església de Sant Andreu de Sagàs, and then to Cal Cirera. Return transport will also be provided at the end of the night." data-pl="Planujesz przyjechać w sobotę bezpośrednio na ceremonię? Zapewniamy transport autokarem z Barcelony do Església de Sant Andreu de Sagàs, a po ślubie do Cal Cirera. Autokar powrotny w nocy również będzie na Was czekał." data-es="¿Vienes directamente a la ceremonia el sábado? Habrá un servicio de autobús desde Barcelona hasta la Església de Sant Andreu de Sagàs, y después hacia Cal Cirera. También habrá transporte de vuelta al final de la noche."></p>
+                <p class="lang-text" style="margin-top: 1rem;" data-en="Details coming soon!" data-pl="Szczegóły już wkrótce!" data-es="¡Pronto compartiremos más detalles!"></p>
+            </article>
+            <article class="info-card">
+                <h2 class="lang-text" data-en="Contact" data-pl="Kontakt" data-es="Contacto"></h2>
+                <p class="lang-text" data-en="If you have any questions, feel free to reach out via WhatsApp:" data-pl="W razie pytań, śmiało piszcie do nas na WhatsAppie:" data-es="Si tenéis cualquier duda, podéis escribirnos por WhatsApp:"></p>
+                <p style="margin-top: 0.75rem;">
+                    Kamila +48 696 551 424<br>
+                    Julio +44 7423 223525
+                </p>
+            </article>
+        </div>
+
+        <a href="kamila-julio/index.html" class="btn btn-secondary back-link lang-text lang-link" data-en="BACK TO HOME" data-pl="WRÓĆ NA STRONĘ GŁÓWNĄ" data-es="VOLVER AL INICIO"></a>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'weddingLang';
+
+        function getSavedLanguage() {
+            const urlLang = new URLSearchParams(window.location.search).get('lang');
+            if (['en', 'pl', 'es'].includes(urlLang)) {
+                return urlLang;
+            }
+
+            const storedLang = localStorage.getItem(STORAGE_KEY);
+            if (['en', 'pl', 'es'].includes(storedLang)) {
+                return storedLang;
+            }
+
+            return 'en';
+        }
+
+        function updateLangLinks(lang) {
+            document.querySelectorAll('a.lang-link').forEach(link => {
+                const href = link.getAttribute('href') || '';
+                const [pathWithQuery, hash = ''] = href.split('#');
+                const [path] = pathWithQuery.split('?');
+                const newHref = path + '?lang=' + encodeURIComponent(lang) + (hash ? '#' + hash : '');
+                link.setAttribute('href', newHref);
+            });
+        }
+
+        function setLanguage(lang) {
+            localStorage.setItem(STORAGE_KEY, lang);
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+
+            document.querySelectorAll('.lang-text').forEach(el => {
+                const text = el.getAttribute(`data-${lang}`);
+                if (text) el.textContent = text;
+            });
+
+            updateLangLinks(lang);
+        }
+
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang'))));
+
+        setLanguage(getSavedLanguage());
+    </script>
+</body>
+</html>
