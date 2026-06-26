@@ -4,8 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kamila & Julio - Wedding RSVP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Prata&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Courier+Prime:wght@400;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Prata&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <style>
+
+        .date {
+            font-family: "Courier Prime", monospace;
+        }
+
         :root {
             --cream: #f5f1e8;
             --coral: #95390A;
@@ -26,7 +36,7 @@
         }
  
 body {
-    font-family: 'Inter', serif;
+    font-family: 'Courier Prime', monospace;
     background-color: #f1ede3;
     color: var(--dark);
     line-height: 1.6;
@@ -205,8 +215,9 @@ body::after {
  
         .date {
             font-size: 0.95rem;
+            font-family: "Courier Prime", monospace;
             color: var(--coral);
-            letter-spacing: 3px;
+            letter-spacing: 0.1em;
             margin-bottom: 2rem;
             font-weight: 500;
         }
@@ -281,7 +292,7 @@ body::after {
 }
  
 .btn-secondary {
-    background-color: transparent;
+    background-color: #f1ede3;
     color: var(--coral);
     border: 1px solid var(--coral);
 }
@@ -495,10 +506,10 @@ body::after {
             <h1 class="lang-text" data-en="Kamila & Julio" data-pl="Kamila & Julio" data-es="Kamila & Julio"></h1>
             <p class="lang-text" 
                data-en="invite you to their wedding and wedding celebration in the heart of the Catalan mountains.
-Join us to celebrate love together, discover the beauty of Spain, and spend an unforgettable weekend surrounded by family and friends."
-               data-pl="zapraszają Was na swój ślub i wesele w sercu katalońskich gór.
-Dołączcie do nas, aby wspólnie świętować miłość, odkrywać uroki Hiszpanii i spędzić niezapomniany weekend w gronie rodziny oraz przyjaciół."
-               data-es="Bienvenido a nuestra celebración de bodas en medio de la belleza atemporal de las montañas de Cataluña. Un fin de semana de romance, naturaleza y recuerdos compartidos en el corazón del Mediterráneo."></p>
+Join us to celebrate love together and discover the beauty of Spain."
+               data-pl="zapraszają Was na swój ślub i wesele w samym sercu katalońskich gór.
+Dołączcie do nas, aby wspólnie świętować miłość i odkrywać uroki Hiszpanii."
+               data-es="Los invitan a su boda y a la celebración en el corazón de la sierra catalana. Únanse a nosotros para celebrar el amor y descubrir la belleza de España."></p>
             
             <div class="button-group">
                 <a href="rsvp.html" class="btn btn-primary lang-link">
