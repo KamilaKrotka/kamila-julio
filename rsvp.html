@@ -28,13 +28,12 @@
 
         body {
             font-family: 'Courier Prime', monospace;
-            background-color:#f1ede3;
+            background-color: var(--cream);
             color: var(--dark);
             line-height: 1.6;
             min-height: 100vh;
             padding: 2rem;
         }
-
         
         /* ==========================
    PAPER BACKGROUND TEXTURE
@@ -78,66 +77,59 @@ body::before {
         .container {
             max-width: 700px;
             margin: 0 auto;
-            background: transparent;
-            padding: 3rem 2rem;
-            box-shadow: none;
+            background: white;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,.08);
         }
 
         .top-bar {
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .btn {
+            padding: 0.85rem 1.6rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            font-weight: 500;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 260px;
-            height: 56px;
-            padding: 0 1.5rem;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            border-radius: 0;
-            font-weight: 500;
+            min-width: 11rem;
+            max-width: 16rem;
+            white-space: normal;
             text-decoration: none;
             text-align: center;
-            white-space: nowrap;
-            line-height: 1;
-        }
-
-        .btn span {
-            display: inline-block;
-            transform-origin: center;
         }
 
         .btn-primary {
             background-color: var(--coral);
-            color: #ffffff;
+            color: white;
             border: 1px solid var(--coral);
         }
 
-        .btn-primary:hover {
-            background-color: var(--brown);
-            border-color: var(--brown);
-        }
+        .btn-primary:hover { background-color: var(--brown); }
 
         .btn-secondary {
-            background-color: #f1ede3;
+            background-color: transparent;
             color: var(--coral);
             border: 1px solid var(--coral);
-}
-
-        .btn-secondary:hover {
-            background-color: rgba(149, 57, 10, 0.06);
         }
 
-        .form-group { margin-bottom: 3.2rem; }
+        .btn-secondary:hover {
+            background-color: rgba(200, 90, 26, 0.05);
+            color: var(--coral);
+        }
 
-        label { display: block; margin-bottom: 0.85rem; font-weight: 500; }
+        .form-group { margin-bottom: 1.8rem; }
+
+        label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
         input, select, textarea {
             width: 100%; padding: 0.85rem 1rem; border: 1px solid var(--light-gray);
             background-color: white; color: var(--dark); border-radius: 0;
@@ -145,7 +137,7 @@ body::before {
 
         input:focus, select:focus, textarea:focus { outline: none; border-color: var(--coral); box-shadow: 0 0 0 3px rgba(217,114,57,.1); }
 
-        .form-footer { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; margin-top: 1rem; }
+        .form-footer { display: flex; gap: 1rem; flex-wrap: wrap; }
 
         .success-message { display: none; text-align: center; }
         .success-message.active { display: block; }
