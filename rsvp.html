@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kamila & Julio - RSVP</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:wght@400;600;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Courier+Prime:wght@400;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Prata&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
     <style>
         :root {
             --cream: #f5f1e8;
@@ -27,44 +26,13 @@
         }
 
         body {
-            font-family: 'Courier Prime', monospace;
+            font-family: 'Inter', sans-serif;
             background-color: var(--cream);
             color: var(--dark);
             line-height: 1.6;
             min-height: 100vh;
             padding: 2rem;
         }
-        
-        /* ==========================
-   PAPER BACKGROUND TEXTURE
-   ========================== */
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -2;
-
-    background:
-        radial-gradient(circle at 15% 20%, rgba(70,50,40,.22) 1px, transparent 1.5px),
-        radial-gradient(circle at 75% 35%, rgba(70,50,40,.18) 1px, transparent 1.5px),
-        radial-gradient(circle at 30% 80%, rgba(70,50,40,.20) 1px, transparent 1.5px),
-        radial-gradient(circle at 85% 75%, rgba(70,50,40,.22) 1px, transparent 1.5px),
-        radial-gradient(circle at 55% 10%, rgba(70,50,40,.15) 1px, transparent 1.5px),
-        radial-gradient(circle at 10% 60%, rgba(70,50,40,.18) 1px, transparent 1.5px);
-
-    background-size:
-        180px 180px,
-        220px 220px,
-        160px 160px,
-        250px 250px,
-        190px 190px,
-        210px 210px;
-
-    opacity: 0.6;
-}
-
 
         h1 {
             font-family: 'Playfair Display', serif;
@@ -199,6 +167,7 @@ body::before {
         <div class="top-bar">
             <div class="date lang-text" data-en="— 22.05.2027 —" data-pl="— 22.05.2027 —" data-es="— 22.05.2027 —"></div>
             <h1 class="lang-text" data-en="Kamila & Julio RSVP" data-pl="Kamila & Julio RSVP" data-es="Kamila & Julio RSVP"></h1>
+            <p class="lang-text" data-en="Please confirm your attendance for the wedding." data-pl="Prosimy o potwierdzenie obecności na weselu." data-es="Por favor confirma tu asistencia a la boda."></p>
         </div>
 
         <form id="form" action="https://formsubmit.co/ajax/402cfaf3a2211b2367a478d9c3b899fd" method="POST">
@@ -206,43 +175,54 @@ body::before {
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_subject" value="New RSVP submission">
             <div class="form-group">
-                <label class="lang-text" data-en="Full name*" data-pl="Imię i nazwisko*" data-es="Nombre completo*"></label>
+                <label class="lang-text" data-en="Full Name *" data-pl="Pełne Imię i Nazwisko *" data-es="Nombre Completo *"></label>
                 <input type="text" name="name" required>
             </div>
-          <div class="form-group">
-    <label class="lang-text" data-en="Will you be attending?*" data-pl="Czy będziesz obecny/a?*" data-es="¿Asistirás?*"></label>
-    <select name="attendance" required>
-        <option value="">-- Select --</option>
-        <option value="yes" data-en="Yes!" data-pl="Tak!" data-es="Sí, estaré allá">Yes!</option>
-        <option value="no" data-en="No, I can't make it" data-pl="Niestety nie" data-es="No puedo asistir">No, I can't make it</option>
-    </select>
-</div>
+            <div class="form-group">
+                <label class="lang-text" data-en="Email Address *" data-pl="Adres E-mail *" data-es="Correo Electrónico *"></label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label class="lang-text" data-en="Will You Be Attending? *" data-pl="Czy Będziesz Obecny/a? *" data-es="¿Asistirás? *"></label>
+                <select name="attendance" required>
+                    <option value="">-- Select --</option>
+                    <option value="yes" data-en="Yes, I\'ll be there" data-pl="Tak, będę tam" data-es="Sí, estaré allá">Yes, I\'ll be there</option>
+                    <option value="no" data-en="No, I can\'t make it" data-pl="Nie, nie mogę przyjść" data-es="No, no puedo asistir">No, I can\'t make it</option>
+                    <option value="maybe" data-en="Maybe" data-pl="Może" data-es="Quizás">Maybe</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="lang-text" data-en="Number of Guests (including yourself)" data-pl="Liczba Gości (w tym Ty)" data-es="Número de Huéspedes (incluido tú)"></label>
+                <input type="number" name="guests" min="1" value="1">
+            </div>
+            <div class="form-group">
+                <label class="lang-text" data-en="Dietary Restrictions" data-pl="Ograniczenia Dietetyczne" data-es="Restricciones Dietéticas"></label>
+                <textarea name="dietary"></textarea>
+            </div>
+            <div class="form-group">
+                <label class="lang-text" data-en="Additional Comments" data-pl="Dodatkowe Uwagi" data-es="Comentarios Adicionales"></label>
+                <textarea name="comments"></textarea>
+            </div>
+            <div class="form-footer">
+                <a href="index.html" class="btn btn-secondary lang-text lang-link" data-en="BACK" data-pl="WSTECZ" data-es="VOLVER">BACK</a>
+                <button type="submit" class="btn btn-primary lang-text" data-en="SUBMIT RSVP" data-pl="WYŚLIJ POTWIERDZENIE" data-es="ENVIAR CONFIRMACIÓN">SUBMIT RSVP</button>
+            </div>
+        </form>
 
-<div class="form-group">
-    <label class="lang-text" data-en="Number of guests (including yourself)*" data-pl="Liczba osób (w tym Ty)*" data-es="Número de huéspedes (incluido tú)*"></label>
-    <select name="guests" required>
-        <option value="1" selected>1</option>
-        <option value="2">2</option>
-    </select>
-</div>
-
-<div class="form-group">
-    <label class="lang-text" data-en="Veggie, vegan, or any allergies?" data-pl="Dieta wegetariańska, wegańska lub alergie?" data-es="¿Eres vege, vegano/a o tienes alergias?"></label>
-    <textarea name="dietary" style="resize: none; height: 43px; min-height: 43px; overflow: hidden; line-height: 1.5; padding: 8px;"></textarea>
-</div>
-
-<div class="form-footer">
-    <a href="index.html" class="btn btn-secondary lang-text lang-link" data-en="BACK" data-pl="WSTECZ" data-es="VOLVER">BACK</a>
-    <button type="submit" class="btn btn-primary lang-text" data-en="SUBMIT RSVP" data-pl="WYŚLIJ POTWIERDZENIE" data-es="ENVIAR CONFIRMACIÓN">SUBMIT RSVP</button>
-</div>
+        <div class="success-message" id="successMessage">
+            <h2 class="lang-text" data-en="Thank You!" data-pl="Dziękujemy!" data-es="¡Gracias!">Thank You!</h2>
+            <p class="lang-text" data-en="We've received your RSVP. See you soon!" data-pl="Otrzymaliśmy Twoje potwierdzenie. Do zobaczenia!" data-es="Hemos recibido tu confirmación. ¡Nos vemos pronto!">We've received your RSVP. See you soon!</p>
+            <a href="index.html" class="btn btn-primary lang-text" data-en="BACK TO HOME" data-pl="WRÓĆ NA STRONĘ GŁÓWNĄ" data-es="VOLVER AL INICIO">BACK TO HOME</a>
+        </div>
+    </div>
 
     <script>
         const currentLanguage = { lang: 'en' };
 
         const translations = {
-            en: { 'attendance-yes': "Yes!", 'attendance-no': "I can't make it"},
-            pl: { 'attendance-yes': 'Tak!', 'attendance-no': 'Niestety nie'},
-            es: { 'attendance-yes': 'Sí!', 'attendance-no': 'No puedo asistir'},
+            en: { 'attendance-yes': "Yes, I'll be there", 'attendance-no': "No, I can't make it", 'attendance-maybe': 'Maybe' },
+            pl: { 'attendance-yes': 'Tak, będę tam', 'attendance-no': 'Nie, nie mogę przyjść', 'attendance-maybe': 'Może' },
+            es: { 'attendance-yes': 'Sí, estaré allá', 'attendance-no': 'No, no puedo asistir', 'attendance-maybe': 'Quizás' },
         };
 
         const STORAGE_KEY = 'weddingLang';
