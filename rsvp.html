@@ -27,7 +27,7 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Courier Prime', monospace;
             background-color:#f1ede3;
             color: var(--dark);
             line-height: 1.6;
@@ -35,165 +35,121 @@
             padding: 2rem;
         }
 
+        
         /* ==========================
-           PAPER BACKGROUND TEXTURE
-           ========================== */
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: -2;
+   PAPER BACKGROUND TEXTURE
+   ========================== */
 
-            background:
-                radial-gradient(circle at 15% 20%, rgba(70,50,40,.22) 1px, transparent 1.5px),
-                radial-gradient(circle at 75% 35%, rgba(70,50,40,.18) 1px, transparent 1.5px),
-                radial-gradient(circle at 30% 80%, rgba(70,50,40,.20) 1px, transparent 1.5px),
-                radial-gradient(circle at 85% 75%, rgba(70,50,40,.22) 1px, transparent 1.5px),
-                radial-gradient(circle at 55% 10%, rgba(70,50,40,.15) 1px, transparent 1.5px),
-                radial-gradient(circle at 10% 60%, rgba(70,50,40,.18) 1px, transparent 1.5px);
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -2;
 
-            background-size:
-                180px 180px,
-                220px 220px,
-                160px 160px,
-                250px 250px,
-                190px 190px,
-                210px 210px;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(70,50,40,.22) 1px, transparent 1.5px),
+        radial-gradient(circle at 75% 35%, rgba(70,50,40,.18) 1px, transparent 1.5px),
+        radial-gradient(circle at 30% 80%, rgba(70,50,40,.20) 1px, transparent 1.5px),
+        radial-gradient(circle at 85% 75%, rgba(70,50,40,.22) 1px, transparent 1.5px),
+        radial-gradient(circle at 55% 10%, rgba(70,50,40,.15) 1px, transparent 1.5px),
+        radial-gradient(circle at 10% 60%, rgba(70,50,40,.18) 1px, transparent 1.5px);
 
-            opacity: 0.6;
-        }
+    background-size:
+        180px 180px,
+        220px 220px,
+        160px 160px,
+        250px 250px,
+        190px 190px,
+        210px 210px;
+
+    opacity: 0.6;
+}
+
 
         h1 {
-            font-family: 'Courier Prime', monospace;
+            font-family: 'Playfair Display', serif;
+        }
+
+        h2 {
+            font-family: 'Inter', sans-serif;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
             background: transparent;
             padding: 3rem 2rem;
             box-shadow: none;
         }
 
-        .date {
-            font-family: 'Courier Prime', monospace;
-        }
-
         .top-bar {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
         }
 
-        /* ==========================
-           STRUCTURE DWUKOLUMNOWA (GRID)
-           ========================= */
-        .form-group {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 40px;
-            padding: 20px 0;
-            align-items: center;
-        }
-
-        .form-group label {
-            margin: 0;
-            color: var(--dark);
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-            font-weight: 500;
-            line-height: 1.3;
-        }
-
-        .grid-divider {
-            border: 0;
-            height: 1px;
-            background-color: rgba(149, 57, 10, 0.15);
-            margin: 0;
-        }
-
-        /* ==========================
-           POLE WEJŚCIOWE FORMULARZA
-           ========================== */
-        input, select, textarea {
-            width: 100%;
-            padding: 0.85rem 1rem;
-            border: 1px solid rgba(149, 57, 10, 0.25);
-            background-color: transparent;
-            color: var(--dark);
-            border-radius: 0;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--coral);
-            box-shadow: 0 0 0 3px rgba(149, 57, 10, 0.08);
-        }
-
-        /* Stopka z przyciskami w prawej kolumnie */
-        .form-footer {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 40px;
-            margin-top: 2rem;
-        }
-
-        .form-footer-buttons {
-            grid-column: 2;
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        /* ==========================
-           PRZYCISKI (BUTTONS)
-           ========================== */
         .btn {
-            padding: 0.85rem 1.6rem;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.88rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            border: 1px solid transparent;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 0;
-            font-weight: 500;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-width: 11rem;
-            max-width: 16rem;
-            white-space: normal;
+            width: 260px;
+            height: 56px;
+            padding: 0 1.5rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border-radius: 0;
+            font-weight: 500;
             text-decoration: none;
             text-align: center;
+            white-space: nowrap;
+            line-height: 1;
+        }
+
+        .btn span {
+            display: inline-block;
+            transform-origin: center;
         }
 
         .btn-primary {
             background-color: var(--coral);
-            color: white;
+            color: #ffffff;
             border: 1px solid var(--coral);
         }
 
-        .btn-primary:hover { background-color: var(--brown); }
-
-        a.btn.btn-secondary {
-            display: inline-flex !important;
-            background-color: #f1ede3 !important;
-            color: var(--coral) !important;
-            border: 1px solid var(--coral) !important;
-            text-decoration: none !important;
+        .btn-primary:hover {
+            background-color: var(--brown);
+            border-color: var(--brown);
         }
 
-        a.btn.btn-secondary:hover {
-            background-color: rgba(200, 90, 26, 0.05) !important;
-            color: var(--coral) !important;
+        .btn-secondary {
+            background-color: #f1ede3;
+            color: var(--coral);
+            border: 1px solid var(--coral);
+}
+
+        .btn-secondary:hover {
+            background-color: rgba(149, 57, 10, 0.06);
         }
 
-        /* JĘZYKI */
+        .form-group { margin-bottom: 3.2rem; }
+
+        label { display: block; margin-bottom: 0.85rem; font-weight: 500; }
+        input, select, textarea {
+            width: 100%; padding: 0.85rem 1rem; border: 1px solid var(--light-gray);
+            background-color: white; color: var(--dark); border-radius: 0;
+        }
+
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--coral); box-shadow: 0 0 0 3px rgba(217,114,57,.1); }
+
+        .form-footer { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; margin-top: 1rem; }
+
+        .success-message { display: none; text-align: center; }
+        .success-message.active { display: block; }
+
         .language-switcher {
             position: fixed;
             top: 1rem;
@@ -231,25 +187,10 @@
             margin: 0 0.25rem;
         }
 
-        /* RESPONSYWNOŚĆ (MOBILE) */
+
         @media (max-width: 768px) {
             body { padding: 1rem; }
-            
-            .form-group, .form-footer {
-                grid-template-columns: 1fr;
-                gap: 10px;
-                padding: 12px 0;
-            }
-            
-            .form-footer-buttons {
-                grid-column: 1;
-                flex-direction: column;
-                width: 100%;
-            }
-            .btn {
-                max-width: 100%;
-                width: 100%;
-            }
+            .form-footer { flex-direction: column; }
         }
     </style>
 </head>
@@ -265,57 +206,53 @@
     <div class="container">
         <div class="top-bar">
             <div class="date lang-text" data-en="— 22.05.2027 —" data-pl="— 22.05.2027 —" data-es="— 22.05.2027 —"></div>
-            <h1 class="lang-text" data-en="Kamila & Julio" data-pl="Kamila & Julio" data-es="Kamila & Julio"></h1>
+            <h1 class="lang-text" data-en="Kamila & Julio RSVP" data-pl="Kamila & Julio RSVP" data-es="Kamila & Julio RSVP"></h1>
         </div>
 
-        <!-- FORMULARZ RSVP -->
-        <form id="rsvp-form">
+        <form id="form" action="https://formsubmit.co/ajax/402cfaf3a2211b2367a478d9c3b899fd" method="POST">
+            <input type="hidden" name="_next" value="https://kamila-julio.vercel.app/rsvp.html">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="New RSVP submission">
             <div class="form-group">
-                <label class="lang-text" data-en="Full Name*" data-pl="Imię i nazwisko*" data-es="Nombre y apellido*"></label>
+                <label class="lang-text" data-en="Full name*" data-pl="Imię i nazwisko*" data-es="Nombre completo*"></label>
                 <input type="text" name="name" required>
             </div>
+          <div class="form-group">
+    <label class="lang-text" data-en="Will you be attending?*" data-pl="Czy będziesz obecny/a?*" data-es="¿Asistirás?*"></label>
+    <select name="attendance" required>
+        <option value="">-- Select --</option>
+        <option value="yes" data-en="Yes!" data-pl="Tak!" data-es="Sí, estaré allá">Yes!</option>
+        <option value="no" data-en="No, I can't make it" data-pl="Niestety nie" data-es="No puedo asistir">No, I can't make it</option>
+    </select>
+</div>
 
-            <hr class="grid-divider">
+<div class="form-group">
+    <label class="lang-text" data-en="Number of guests (including yourself)*" data-pl="Liczba osób (w tym Ty)*" data-es="Número de huéspedes (incluido tú)*"></label>
+    <select name="guests" required>
+        <option value="1" selected>1</option>
+        <option value="2">2</option>
+    </select>
+</div>
 
-            <div class="form-group">
-                <label class="lang-text" data-en="Will you attend?*" data-pl="Czy będziesz obecny/a?*" data-es="¿Asistirás?*"></label>
-                <select name="attendance" required>
-                    <option value="" class="lang-text" data-en="-- Select --" data-pl="-- Wybierz --" data-es="-- Seleccionar --"></option>
-                    <option value="yes" class="lang-text" data-en="Yes!" data-pl="Tak!" data-es="¡Sí!"></option>
-                    <option value="no" class="lang-text" data-en="Unfortunately I can't" data-pl="Niestety nie mogę" data-es="No, no puedo"></option>
-                </select>
-            </div>
+<div class="form-group">
+    <label class="lang-text" data-en="Veggie, vegan, or any allergies?" data-pl="Dieta wegetariańska, wegańska lub alergie?" data-es="¿Eres vege, vegano/a o tienes alergias?"></label>
+    <textarea name="dietary" style="resize: none; height: 43px; min-height: 43px; overflow: hidden; line-height: 1.5; padding: 8px;"></textarea>
+</div>
 
-            <hr class="grid-divider">
-
-            <div class="form-group">
-                <label class="lang-text" data-en="Number of guests (including you)*" data-pl="Liczba osób (w tym Ty)*" data-es="Número de personas (contándote a ti)*"></label>
-                <select name="guests" required>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>
-            </div>
-
-            <hr class="grid-divider">
-
-            <div class="form-group">
-                <label class="lang-text" data-en="Dietary requirements or allergies" data-pl="Dieta wegetariańska, wegańska lub alergie?" data-es="¿Dieta vegetariana, vegana o allergies?"></label>
-                <textarea name="diet" rows="2"></textarea>
-            </div>
-
-            <div class="form-footer">
-                <div class="form-footer-buttons">
-                    <a href="kamila-julio/index.html" class="btn btn-secondary lang-text" data-en="BACK" data-pl="WSTECZ" data-es="VOLVER">BACK</a>
-                    <button type="submit" class="btn btn-primary lang-text" data-en="SEND RSVP" data-pl="WYŚLIJ POTWIERDZENIE" data-es="ENVIAR CONFIRMACIÓN">SEND RSVP</button>
-                </div>
-            </div>
-        </form>
-
-    </div>
+<div class="form-footer">
+    <a href="index.html" class="btn btn-secondary lang-text lang-link" data-en="BACK" data-pl="WSTECZ" data-es="VOLVER">BACK</a>
+    <button type="submit" class="btn btn-primary lang-text" data-en="SUBMIT RSVP" data-pl="WYŚLIJ POTWIERDZENIE" data-es="ENVIAR CONFIRMACIÓN">SUBMIT RSVP</button>
+</div>
 
     <script>
+        const currentLanguage = { lang: 'en' };
+
+        const translations = {
+            en: { 'attendance-yes': "Yes!", 'attendance-no': "I can't make it"},
+            pl: { 'attendance-yes': 'Tak!', 'attendance-no': 'Niestety nie'},
+            es: { 'attendance-yes': 'Sí!', 'attendance-no': 'No puedo asistir'},
+        };
+
         const STORAGE_KEY = 'weddingLang';
 
         function getSavedLanguage() {
@@ -343,25 +280,55 @@
         }
 
         function setLanguage(lang) {
+            currentLanguage.lang = lang;
             localStorage.setItem(STORAGE_KEY, lang);
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
 
             document.querySelectorAll('.lang-text').forEach(el => {
                 const text = el.getAttribute(`data-${lang}`);
-                if (text) {
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.setAttribute('placeholder', text);
-                    } else {
-                        el.textContent = text;
-                    }
-                }
+                if (text) el.textContent = text;
             });
+
+            const attendanceSelect = document.querySelector('select[name="attendance"]');
+            if (attendanceSelect) {
+                attendanceSelect.querySelector('option[value="yes"]').textContent = translations[lang]['attendance-yes'];
+                attendanceSelect.querySelector('option[value="no"]').textContent = translations[lang]['attendance-no'];
+                attendanceSelect.querySelector('option[value="maybe"]').textContent = translations[lang]['attendance-maybe'];
+            }
 
             updateLangLinks(lang);
         }
 
         document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang'))));
+
+        const form = document.getElementById('form');
+        const successMessage = document.getElementById('successMessage');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            try {
+                const formData = new FormData(form);
+
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                    },
+                    body: formData,
+                });
+
+                const resultText = await response.text();
+                if (!response.ok) {
+                    throw new Error(`Server error: ${response.status} ${resultText}`);
+                }
+
+                form.style.display = 'none';
+                successMessage.classList.add('active');
+            } catch (err) {
+                console.error(err);
+                alert(`There was an error submitting your RSVP: ${err.message}`);
+            }
+        });
 
         setLanguage(getSavedLanguage());
     </script>
