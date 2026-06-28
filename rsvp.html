@@ -36,7 +36,7 @@
             position: relative;
         }
 
-        /* ==========================
+ /* ==========================
    NATURAL HANDMADE PAPER
    ========================== */
 
@@ -76,8 +76,12 @@ body::before {
     opacity: .9;
 }
 
-        h1 {
-            font-family: 'Courier Prime', monospace;
+        .title-logo {
+            display: block;
+            width: auto;
+            height: 4.5rem;
+            max-width: 100%;
+            margin: 0 auto;
         }
 
         h2 {
@@ -214,7 +218,7 @@ body::before {
 
         a.btn.btn-secondary {
             display: inline-flex !important;
-            background-color: #f1ede3 !important;
+            background-color: #e9dfd2 !important;
             color: var(--coral) !important;
             border: 1px solid var(--coral) !important;
             text-decoration: none !important;
@@ -307,6 +311,10 @@ body::before {
         @media (max-width: 768px) {
             body { padding: 1rem; }
 
+            .title-logo {
+                height: 3rem;
+            }
+
             .language-switcher {
                 top: 0.75rem;
                 right: 0.75rem;
@@ -349,7 +357,7 @@ body::before {
     <div class="container">
         <div class="top-bar">
             <div class="date lang-text" data-en="— 22.05.2027 —" data-pl="— 22.05.2027 —" data-es="— 22.05.2027 —"></div>
-            <h1 class="lang-text" data-en="Kamila & Julio" data-pl="Kamila & Julio" data-es="Kamila & Julio"></h1>
+            <img src="kamilajulio.png" alt="Kamila & Julio" class="title-logo">
         </div>
 
         <!-- FORMULARZ RSVP -->
