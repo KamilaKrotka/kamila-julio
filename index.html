@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -71,7 +71,7 @@ body::before {
         190px 190px,
         210px 210px;
 
-    opacity: 0.6;
+    opacity: 0.9;
 }
 
 body::after {
@@ -183,6 +183,8 @@ body::after {
             margin: 0;
             overflow: hidden;
             align-self: flex-start;  /* prevents stretching */
+            background-color: rgba(149, 57, 10, 0.06); /* visible placeholder if image fails */
+            min-height: 200px;
         }
  
         .hero-image img {
@@ -192,6 +194,28 @@ body::after {
             border-radius: 0px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
         } 
+
+        .hero-image img.img-error {
+            display: none;
+        }
+
+        .hero-image .img-fallback {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            min-height: 320px;
+            color: var(--coral);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-align: center;
+            padding: 2rem;
+            border: 1px dashed rgba(149, 57, 10, 0.3);
+        }
+
+        .hero-image .img-fallback.active {
+            display: flex;
+        }
  
         @keyframes fadeInUp {
             from {
@@ -428,56 +452,107 @@ body::after {
  
         /* Responsive */
         @media (max-width: 768px) {
-            .hero {
-                flex-direction: column;
-                align-items: flex-start;
-                justify-content: flex-start;
-                padding: 4.5rem 1.5rem 3rem;
-                gap: 2rem;
-                min-height: auto;
+            html, body {
+                height: 100%;
+                overflow: hidden;
             }
 
+            .hero {
+                height: 100vh;
+                height: 100dvh;
+                min-height: 100dvh;
+                max-height: 100dvh;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+                padding: 3.75rem 1.25rem 1rem;
+                gap: 0;
+                overflow: hidden;
+            }
+
+            /* Let .hero-content's children become direct flex items
+               of .hero, so they can be freely interleaved (via order)
+               with .hero-image, which is a sibling of .hero-content
+               rather than nested inside it. */
             .hero-content {
+                display: contents;
+            }
+
+            .date {
                 order: 1;
                 width: 100%;
             }
 
-            .hero-image {
+            .hero h1 {
                 order: 2;
                 width: 100%;
+            }
+
+            .hero p {
+                order: 3;
+                width: 100%;
+            }
+
+            .hero-image {
+                order: 4;
+                width: 100%;
                 align-self: stretch;
+                margin: 0.75rem 0;
+                min-height: 0;
+            }
+
+            .button-group {
+                order: 5;
+                width: 100%;
             }
 
             .hero-image img {
                 width: 100%;
-                height: 260px;
+                height: 26vh;
+                max-height: 160px;
                 object-fit: cover;
                 object-position: center 35%;
             }
 
+            .hero-image .img-fallback {
+                min-height: 26vh;
+                max-height: 160px;
+                padding: 0.75rem;
+                font-size: 0.7rem;
+            }
+
             .date {
-                margin-bottom: 1.25rem;
+                font-size: 0.78rem;
+                margin-bottom: 0.6rem;
             }
  
             .hero h1 {
-                font-size: 2.6rem;
-                margin-bottom: 1.25rem;
+                font-size: 1.9rem;
+                line-height: 1.1;
+                margin-bottom: 0.6rem;
             }
  
             .hero p {
-                font-size: 1rem;
+                font-size: 0.85rem;
+                line-height: 1.45;
                 max-width: 100%;
-                margin-bottom: 2rem;
+                margin-bottom: 0;
             }
  
             .button-group {
-                flex-direction: column;
-                gap: 1rem;
+                flex-direction: row;
+                gap: 0.6rem;
                 width: 100%;
+                margin-top: 0.75rem;
             }
 
             .btn {
                 width: 100%;
+                height: 42px;
+                font-size: 0.68rem;
+                letter-spacing: 0.08em;
+                padding: 0 0.5rem;
             }
  
             nav {
@@ -493,11 +568,12 @@ body::after {
  
             .language-switcher {
                 position: fixed;
-                top: 1rem;
-                right: 1rem;
+                top: 0.75rem;
+                right: 0.75rem;
                 left: auto;
                 margin-left: 0;
                 width: fit-content;
+                padding: 0.4rem 0.6rem;
             }
  
             .rsvp-section {
@@ -511,6 +587,36 @@ body::after {
 
             .form-footer {
                 flex-direction: column;
+            }
+        }
+
+        /* Extra-short phones: trim further so nothing clips */
+        @media (max-width: 768px) and (max-height: 700px) {
+            .hero {
+                padding: 3.25rem 1.25rem 0.75rem;
+            }
+            .hero h1 {
+                font-size: 1.6rem;
+                margin-bottom: 0.4rem;
+            }
+            .date {
+                margin-bottom: 0.4rem;
+            }
+            .hero p {
+                font-size: 0.78rem;
+                line-height: 1.35;
+            }
+            .hero-image img,
+            .hero-image .img-fallback {
+                height: 20vh;
+                max-height: 120px;
+            }
+            .button-group {
+                margin-top: 0.5rem;
+            }
+            .btn {
+                height: 38px;
+                font-size: 0.62rem;
             }
         }
  
@@ -555,82 +661,14 @@ Dołączcie do nas, aby wspólnie świętować miłość i odkrywać uroki Hiszp
                 <a href="rsvp.html" class="btn btn-primary lang-link">
                     <span class="lang-text" data-en="CONFIRM PRESENCE" data-pl="POTWIERDŹ OBECNOŚĆ" data-es="CONFIRMAR PRESENCIA"></span>
                 </a>
-                <a href="../info.html" class="btn btn-secondary lang-link">
+                <a href="info.html" class="btn btn-secondary lang-link">
                     <span class="lang-text" data-en="WEDDING DAY INFO" data-pl="INFORMACJE O ŚLUBIE" data-es="INFORMACIÓN DEL EVENTO"></span>
                 </a>
             </div>
         </div>
         <div class="hero-image">
-            <img src="miriam-espacio-ggCBI9mWPY4-unsplash.jpg" alt="Wedding landscape">
-        </div>
-    </section>
- 
-    <!-- RSVP Form Section -->
-    <section class="rsvp-section" id="rsvp">
-        <div class="rsvp-container">
-            <div class="rsvp-form" id="rsvpForm">
-                <h2 class="lang-text" data-en="Confirm Your Presence" data-pl="Potwierdź Swoją Obecność" data-es="Confirma Tu Presencia"></h2>
-                <p class="lang-text" 
-                   data-en="We can't wait to celebrate with you. Please fill in your details below."
-                   data-pl="Nie możemy się doczekać, aby świętować z Tobą. Proszę podaj swoje dane poniżej."
-                   data-es="No podemos esperar para celebrar contigo. Por favor, completa tus datos a continuación."></p>
- 
-                <form id="form" action="https://api.basin.io/submit/2b42ac7d63a2" method="POST">
-                    <div class="form-group">
-                        <label class="lang-text" data-en="Full Name *" data-pl="Pełne Imię i Nazwisko *" data-es="Nombre Completo *"></label>
-                        <input type="text" name="name" required>
-                    </div>
- 
-                    <div class="form-group">
-                        <label class="lang-text" data-en="Email Address *" data-pl="Adres E-mail *" data-es="Correo Electrónico *"></label>
-                        <input type="email" name="email" required>
-                    </div>
- 
-                    <div class="form-group">
-                        <label class="lang-text" data-en="Phone Number" data-pl="Numer Telefonu" data-es="Número de Teléfono"></label>
-                        <input type="tel" name="phone">
-                    </div>
- 
-                    <div class="form-group">
-                        <label class="lang-text" data-en="Will You Be Attending? *" data-pl="Czy Będziesz Obecny/a? *" data-es="¿Asistirás? *"></label>
-                        <select name="attendance" required>
-                            <option value="">-- Select --</option>
-                            <option class="hidden-text" data-en="Yes, I'll be there" data-pl="Tak, będę tam" data-es="Sí, estaré allá">Yes, I'll be there</option>
-                            <option class="hidden-text" data-en="No, I can't make it" data-pl="Nie, nie mogę przyjść" data-es="No, no puedo asistir">No, I can't make it</option>
-                            <option class="hidden-text" data-en="Maybe" data-pl="Może" data-es="Quizás">Maybe</option>
-                        </select>
-                    </div>
- 
-                    <div class="form-group">
-                        <label class="lang-text" data-en="Number of Guests (including yourself)" data-pl="Liczba Gości (w tym Ty)" data-es="Número de Huéspedes (incluido tú)"></label>
-                        <input type="number" name="guests" min="1" value="1">
-                    </div>
- 
-                    <div class="form-group">
-                        <label class="lang-text" data-en="Dietary Restrictions" data-pl="Ograniczenia Dietetyczne" data-es="Restricciones Dietéticas"></label>
-                        <textarea name="dietary"></textarea>
-                    </div>
- 
-                    <div class="form-group">
-                        <label class="lang-text" data-en="Additional Comments" data-pl="Dodatkowe Uwagi" data-es="Comentarios Adicionales"></label>
-                        <textarea name="comments"></textarea>
-                    </div>
- 
-                    <div class="form-footer">
-                        <button type="button" class="btn btn-back scroll-to-home lang-text" data-en="BACK" data-pl="WSTECZ" data-es="VOLVER"></button>
-                        <button type="submit" class="btn btn-submit lang-text" data-en="SUBMIT RSVP" data-pl="WYŚLIJ POTWIERDZENIE" data-es="ENVIAR CONFIRMACIÓN"></button>
-                    </div>
-                </form>
-            </div>
- 
-            <div class="success-message" id="successMessage">
-                <h2 class="lang-text" data-en="Thank You!" data-pl="Dziękujemy!" data-es="¡Gracias!"></h2>
-                <p class="lang-text" 
-                   data-en="We've received your RSVP. See you soon!"
-                   data-pl="Otrzymaliśmy Twoje potwierdzenie. Do zobaczenia!"
-                   data-es="Hemos recibido tu confirmación. ¡Nos vemos pronto!"></p>
-                <button class="btn btn-primary scroll-to-home lang-text" data-en="BACK TO HOME" data-pl="WRÓĆ NA STRONĘ GŁÓWNĄ" data-es="VOLVER AL INICIO"></button>
-            </div>
+            <img src="miriam-espacio-ggCBI9mWPY4-unsplash.jpg" alt="Wedding landscape" onerror="this.classList.add('img-error'); this.nextElementSibling.classList.add('active');">
+            <div class="img-fallback">Photo unavailable<br>(miriam-espacio-ggCBI9mWPY4-unsplash.jpg)</div>
         </div>
     </section>
  
@@ -652,24 +690,6 @@ Dołączcie do nas, aby wspólnie świętować miłość i odkrywać uroki Hiszp
  
             return 'en';
         }
- 
-        const translations = {
-            en: {
-                'attendance-yes': 'Yes, I\'ll be there',
-                'attendance-no': 'No, I can\'t make it',
-                'attendance-maybe': 'Maybe'
-            },
-            pl: {
-                'attendance-yes': 'Tak, będę tam',
-                'attendance-no': 'Nie, nie mogę przyjść',
-                'attendance-maybe': 'Może'
-            },
-            es: {
-                'attendance-yes': 'Sí, estaré allá',
-                'attendance-no': 'No, no puedo asistir',
-                'attendance-maybe': 'Quizás'
-            }
-        };
  
         function updateLangLinks(lang) {
             document.querySelectorAll('a.lang-link').forEach(link => {
@@ -712,14 +732,6 @@ Dołączcie do nas, aby wspólnie świętować miłość i odkrywać uroki Hiszp
                 }
             });
  
-            // Update select options
-            const attendanceSelect = document.querySelector('select[name="attendance"]');
-            if (attendanceSelect) {
-                attendanceSelect.querySelector(`option[value="Yes, I'll be there"]`).textContent = translations[lang]['attendance-yes'];
-                attendanceSelect.querySelector(`option[value="No, I can't make it"]`).textContent = translations[lang]['attendance-no'];
-                attendanceSelect.querySelector(`option[value="Maybe"]`).textContent = translations[lang]['attendance-maybe'];
-            }
- 
             localStorage.setItem(STORAGE_KEY, lang);
             updateLangLinks(lang);
         }
@@ -729,44 +741,6 @@ Dołączcie do nas, aby wspólnie świętować miłość i odkrywać uroki Hiszp
             btn.addEventListener('click', () => {
                 setLanguage(btn.getAttribute('data-lang'));
             });
-        });
- 
-        // Scroll to RSVP
-        document.querySelectorAll('.scroll-to-rsvp').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.getElementById('home').style.display = 'none';
-                document.getElementById('rsvp').classList.add('active');
-                window.scrollTo(0, 0);
-            });
-        });
- 
-        // Scroll to Home
-        document.querySelectorAll('.scroll-to-home').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.getElementById('home').style.display = 'flex';
-                document.getElementById('rsvp').classList.remove('active');
-                document.getElementById('rsvpForm').style.display = 'block';
-                document.getElementById('successMessage').classList.remove('active');
-                window.scrollTo(0, 0);
-            });
-        });
- 
-        // Form Submission
-        document.getElementById('form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            try {
-                await fetch('https://api.basin.io/submit/2b42ac7d63a2', {
-                    method: 'POST',
-                    body: new FormData(e.target)
-                });
- 
-                document.getElementById('rsvpForm').style.display = 'none';
-                document.getElementById('successMessage').classList.add('active');
-            } catch (error) {
-                console.error('Error:', error);
-                alert('There was an error submitting your RSVP. Please try again.');
-            }
         });
  
         // Initialize
