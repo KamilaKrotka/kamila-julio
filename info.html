@@ -260,17 +260,17 @@ body::before {
         /* RWD: Na telefonach wracamy do jednej kolumny, żeby tekst się nie ściskał */
         @media (max-width: 768px) {
             body { padding: 1rem; }
-
+ 
             .title-logo {
                 height: 3rem;
             }
-
+ 
             .language-switcher {
                 top: 0.75rem;
                 right: 0.75rem;
                 padding: 0.4rem 0.6rem;
             }
-
+ 
             .form-footer { flex-direction: column; }
             
             .grid-section {
@@ -284,8 +284,10 @@ body::before {
             .btn {
                 width: 100%;
                 max-width: 100%;
+                height: auto;
                 padding: 1rem 1rem;
-                font-size: 0.85rem;
+                font-size: 0.82rem;
+                letter-spacing: 0.1em;
             }
             .church-sep {
                 display: none;
