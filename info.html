@@ -36,10 +36,6 @@
             position: relative;
         }
 
- /* ==========================
-   NATURAL HANDMADE PAPER
-   ========================== */
-
 body::before {
     content: "";
     position: fixed;
@@ -81,7 +77,8 @@ body::before {
             width: auto;
             height: 4.5rem;
             max-width: 100%;
-            margin: 0 auto;
+            /* FIX: left-align logo as on homepage */
+            margin: 0;
         }
 
         h2 {
@@ -98,7 +95,7 @@ body::before {
         }
 
         .container {
-            max-width: 800px; /* Zwiększone z 700px, żeby układ dwukolumnowy wyglądał czytelnie */
+            max-width: 800px;
             margin: 0 auto;
             background: transparent;
             padding: 3rem 2rem;
@@ -114,14 +111,12 @@ body::before {
             font-weight: 500;
         }
 
+        /* FIX: left-align top bar like homepage */
         .top-bar {
-            text-align: center;
+            text-align: left;
             margin-bottom: 3rem;
         }
 
-        /* ==========================
-           NOWA STRUKTURA DWUKOLUMNOWA (GRID)
-           ========================== */
         .info-sections {
             display: flex;
             flex-direction: column;
@@ -131,10 +126,10 @@ body::before {
 
         .grid-section {
             display: grid;
-            grid-template-columns: 1fr 2fr; /* Lewa kolumna: 1 część szerokości, prawa: 2 części */
+            grid-template-columns: 1fr 2fr;
             gap: 40px;
             padding: 20px 0;
-            align-items: first baseline; /* Wyrównuje nagłówek do pierwszej linii tekstu po prawej */
+            align-items: first baseline;
         }
 
         .grid-title h2 {
@@ -152,7 +147,7 @@ body::before {
         .grid-divider {
             border: 0;
             height: 1px;
-            background-color: rgba(149, 57, 10, 0.15); /* Subtelna koralowa linia podziału */
+            background-color: rgba(149, 57, 10, 0.15);
             margin: 0;
         }
 
@@ -160,9 +155,6 @@ body::before {
             display: none;
         }
 
-        /* ==========================
-           BUTTONS & FORM ELEMENTS
-           ========================== */
         .btn {
             padding: 1rem 2rem;
             font-family: 'Inter', sans-serif;
@@ -193,6 +185,7 @@ body::before {
         .btn-primary:hover,
         .btn-primary:active { background-color: var(--brown); }
 
+        /* FIX: secondary button hover is fully opaque coral */
         .btn-secondary {
             background-color: #e9dfd2;
             color: var(--coral);
@@ -201,8 +194,8 @@ body::before {
 
         .btn-secondary:hover,
         .btn-secondary:active {
-            background-color: rgba(200, 90, 26, 0.05);
-            color: var(--coral);
+            background-color: var(--coral);
+            color: #ffffff;
         }
 
         .form-group { margin-bottom: 1.8rem; }
@@ -257,7 +250,6 @@ body::before {
             margin: 0 0.25rem;
         }
 
-        /* RWD: Na telefonach wracamy do jednej kolumny, żeby tekst się nie ściskał */
         @media (max-width: 768px) {
             body { padding: 1rem; }
  
@@ -281,14 +273,24 @@ body::before {
             .grid-title h2 {
                 font-size: 1.2rem;
             }
+            /* FIX: consistent button padding matching index.html on mobile */
             .btn {
                 width: 100%;
                 max-width: 100%;
                 height: auto;
                 padding: 1rem 1rem;
-                font-size: 0.82rem;
+                font-size: 0.85rem;
                 letter-spacing: 0.1em;
+                /* FIX: add consistent bottom margin to match index */
+                margin-bottom: 0;
             }
+
+            /* FIX: wrapper around back button for consistent spacing */
+            .back-btn-wrapper {
+                margin-top: 2rem;
+                margin-bottom: 2rem;
+            }
+
             .church-sep {
                 display: none;
             }
@@ -315,7 +317,6 @@ body::before {
 
         <div class="info-sections">
             
-            <!-- SEKCJA 1: UROCZYSTOŚĆ -->
             <div class="grid-section">
                 <div class="grid-title">
                     <h2 class="lang-text" data-en="THE CELEBRATION" data-pl="UROCZYSTOŚĆ" data-es="LA CELEBRACIÓN"></h2>
@@ -334,7 +335,6 @@ body::before {
 
             <hr class="grid-divider">
 
-            <!-- SEKCJA 2: TRANSPORT -->
             <div class="grid-section">
                 <div class="grid-title">
                     <h2 class="lang-text" data-en="TRANSPORT" data-pl="TRANSPORT" data-es="TRANSPORTE"></h2>
@@ -347,8 +347,6 @@ body::before {
 
             <hr class="grid-divider">
 
-
-            <!-- SEKCJA 4: ADDITIONAL INFORMATION -->
             <div class="grid-section">
                 <div class="grid-title">
                     <h2 class="lang-text" data-en="ADDITIONAL INFORMATION" data-pl="DODATKOWE INFORMACJE" data-es="INFORMACIÓN ADICIONAL"></h2>
@@ -362,7 +360,7 @@ P.D. Como la fiesta será en el jardín y queremos que se sientan cómodos, les 
                 </div>
             </div>
             <hr class="grid-divider">
-                        <!-- SEKCJA 3: KONTAKT -->
+
             <div class="grid-section">
                 <div class="grid-title">
                     <h2 class="lang-text" data-en="CONTACT" data-pl="KONTAKT" data-es="CONTACTO"></h2>
@@ -378,13 +376,15 @@ P.D. Como la fiesta será en el jardín y queremos que se sientan cómodos, les 
 
         </div>
 
-        <a href="index.html" 
-           class="btn btn-secondary lang-text lang-link" 
-           data-en="BACK" 
-           data-pl="WSTECZ" 
-           data-es="VOLVER">
-           BACK
-        </a>   
+        <div class="back-btn-wrapper">
+            <a href="index.html" 
+               class="btn btn-secondary lang-text lang-link" 
+               data-en="BACK" 
+               data-pl="WSTECZ" 
+               data-es="VOLVER">
+               BACK
+            </a>
+        </div>
 
     </div>
 
