@@ -78,7 +78,7 @@ body::before {
             height: 4.5rem;
             max-width: 100%;
             /* FIX: left-align logo as on homepage */
-            margin: 0;
+            margin: 0 0 0 -0.60rem;
         }
 
         h2 {
@@ -141,7 +141,7 @@ body::before {
             background-repeat: no-repeat;
             /* FIX: moved arrow inward from 1rem to 1.5rem from right edge */
             background-position: right 1.5rem center;
-            padding-right: 2rem;
+            padding-right: 3rem;
         }
 
         input, select, textarea {
@@ -227,18 +227,18 @@ body::before {
 
         a.btn.btn-secondary:hover,
         a.btn.btn-secondary:active {
-            background-color: var(--coral) !important;
-            color: #ffffff !important;
+            background-color: #E5D6C8 !important;
+            color: var(--coral) !important;
         }
 
         .language-switcher {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
+            position: fixed;
+            top: 0.75rem;
+            right: 0.75rem;
             z-index: 1000;
             display: flex;
             gap: 0.5rem;
-            padding: 0.75rem 1rem;
+            padding: 0.4rem 0.6rem;
             border-radius: 4px;
         }
 
@@ -264,8 +264,13 @@ body::before {
         }
 
         .lang-sep {
-            color: var(--light-gray);
-            margin: 0 0.25rem;
+            color: var(--brown);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            line-height: 1.5;
+            vertical-align: middle;
+            position: relative;
+            top: 1px;
         }
 
         .success-message {

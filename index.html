@@ -105,7 +105,7 @@ body::after {
         /* Language Switcher */
         .language-switcher {
             position: fixed;
-            top: 3.2rem;
+            top: 4rem;
             margin-left: 505px;
             z-index: 1000;
             display: flex;
@@ -136,8 +136,13 @@ body::after {
         }
  
         .lang-sep {
-            color: var(--light-gray);
-            margin: 0 0.25rem;
+            color: var(--brown);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            line-height: 1.5;
+            vertical-align: middle;
+            position: relative;
+            top: 1px;
         }
  
         /* Navigation */
@@ -263,7 +268,7 @@ body::after {
             max-width: 100%;
             margin-bottom: 2rem;
             /* FIX: slight negative margin to align logo visually with text below */
-            margin-left: -0.85rem;
+            margin-left: -0.60rem;
         }
  
         .hero p {
@@ -331,11 +336,10 @@ body::after {
     border: 1px solid var(--coral);
 }
  
-/* FIX: secondary button hover is now fully opaque coral, not transparent */
 .btn-secondary:hover,
 .btn-secondary:active {
-    background-color: var(--coral);
-    color: #ffffff;
+    background-color: #E5D6C8;
+    color: var(--coral);
 }
  
         /* RSVP Form Section */
@@ -590,15 +594,48 @@ body::after {
                 margin: 0.5rem 0;
             }
  
-            .language-switcher {
-                position: fixed;
-                top: 0.75rem;
-                right: 0.75rem;
-                left: auto;
-                margin-left: 0;
-                padding: 0.4rem 0.6rem;
-            }
+       /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 3.2rem;
+            margin-left: 505px;
+            z-index: 1000;
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+        }
  
+        .lang-btn {
+            background: none;
+            border: none;
+            font-family: 'Inter', serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            color: var(--dark);
+            margin-bottom: 2rem;
+        }
+ 
+        .lang-btn.active {
+            color: var(--coral);
+            opacity: 1;
+            font-weight: 600;
+        }
+ 
+        .lang-btn:hover {
+            opacity: 1;
+            color: var(--brown);
+        }
+ 
+        .lang-sep {
+            color: var(--brown);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            line-height: 1.2;
+            vertical-align: middle;
+            position: relative;
+            top: 1px;
+        }
             .rsvp-section {
                 padding: 5rem 1.5rem 2rem;
                 min-height: auto;
@@ -725,20 +762,24 @@ Dołączcie do nas, aby wspólnie świętować miłość i odkrywać uroki Hiszp
             });
         }
 
-        // FIX: insert soft line-break opportunities before Polish "w" and Spanish "y" connectors on mobile
+        // Insert soft line-break before Polish "w" and Spanish "y" connectors on mobile
         function applyMobileLineBreaks(lang) {
             if (window.innerWidth > 768) return;
             const p = document.querySelector('.hero p.lang-text');
             if (!p) return;
-            let text = p.textContent;
+            // Use the raw data attribute text so we work from clean source each time
+            const raw = p.getAttribute('data-' + lang) || '';
+            let html = raw
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;');
             if (lang === 'pl') {
-                // break before standalone "w" (Polish preposition)
-                text = text.replace(/\s(w)\s/g, '\u00A0\u200B$1 ');
+                // break opportunity before standalone "w"
+                html = html.replace(/ (w) /g, ' <wbr>$1 ');
             } else if (lang === 'es') {
-                // break before standalone "y" (Spanish conjunction)
-                text = text.replace(/\s(y)\s/g, '\u00A0\u200B$1 ');
+                // break opportunity before standalone "y"
+                html = html.replace(/ (y) /g, ' <wbr>$1 ');
             }
-            p.textContent = text;
+            p.innerHTML = html;
         }
  
         function setLanguage(lang) {
@@ -749,15 +790,20 @@ Dołączcie do nas, aby wspólnie świętować miłość i odkrywać uroki Hiszp
                 btn.classList.remove('active');
             });
             document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
- 
+
+            const isMobile = window.innerWidth <= 768;
+            const heroP = document.querySelector('.hero p.lang-text');
+
             // Update all text elements
             document.querySelectorAll('.lang-text').forEach(el => {
+                // On mobile, skip the hero paragraph — applyMobileLineBreaks handles it via innerHTML
+                if (isMobile && el === heroP) return;
                 const text = el.getAttribute(`data-${lang}`);
                 if (text) {
                     el.textContent = text;
                 }
             });
- 
+
             // Auto-shrink button label text if a translation is too wide
             document.querySelectorAll('.btn span.lang-text').forEach(span => {
                 span.style.transform = 'scale(1)';
@@ -770,7 +816,7 @@ Dołączcie do nas, aby wspólnie świętować miłość i odkrywać uroki Hiszp
                     span.style.transform = `scale(${scale})`;
                 }
             });
- 
+
             localStorage.setItem(STORAGE_KEY, lang);
             updateLangLinks(lang);
             applyMobileLineBreaks(lang);

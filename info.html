@@ -78,7 +78,7 @@ body::before {
             height: 4.5rem;
             max-width: 100%;
             /* FIX: left-align logo as on homepage */
-            margin: 0;
+            margin: 0 0 0 -0.60rem;
         }
 
         h2 {
@@ -194,8 +194,8 @@ body::before {
 
         .btn-secondary:hover,
         .btn-secondary:active {
-            background-color: var(--coral);
-            color: #ffffff;
+            background-color: #E5D6C8;
+            color: var(--coral);
         }
 
         .form-group { margin-bottom: 1.8rem; }
@@ -214,13 +214,13 @@ body::before {
         .success-message.active { display: block; }
 
         .language-switcher {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
+            position: fixed;
+            top: 0.75rem;
+            right: 0.75rem;
             z-index: 1000;
             display: flex;
             gap: 0.5rem;
-            padding: 0.75rem 1rem;
+            padding: 0.4rem 0.6rem;
             border-radius: 4px;
         }
 
@@ -246,8 +246,13 @@ body::before {
         }
 
         .lang-sep {
-            color: var(--light-gray);
-            margin: 0 0.25rem;
+            color: var(--brown);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            line-height: 1.5;
+            vertical-align: middle;
+            position: relative;
+            top: 1px;
         }
 
         @media (max-width: 768px) {
@@ -255,6 +260,7 @@ body::before {
  
             .title-logo {
                 height: 3rem;
+                margin: 0 0 0 -0.85rem;
             }
  
             .language-switcher {
