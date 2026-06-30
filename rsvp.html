@@ -323,7 +323,7 @@ body::before {
             body { padding: 1rem; }
  
             .container {
-                padding: 3rem 0.75rem 2rem 1.75rem;
+                padding: 3rem 0.75rem 2rem 0.75rem;
             }
  
             .title-logo {
@@ -338,10 +338,16 @@ body::before {
                 padding: 0.4rem 0.6rem;
             }
             
-            .form-group, .form-footer {
+            .form-group {
                 grid-template-columns: 1fr;
                 gap: 10px;
                 padding: 12px 0;
+            }
+
+            .form-footer {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding: 0;
             }
             
             .form-footer-buttons {
@@ -358,6 +364,7 @@ body::before {
                 padding: 1rem 1rem;
                 font-size: 0.85rem;
                 letter-spacing: 0.1em;
+                line-height: 1;
             }
  
             .grid-divider {
