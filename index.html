@@ -469,6 +469,15 @@ body::after {
  
         /* Responsive */
         @media (max-width: 768px) {
+            /* ==== ADJUST HERE: mobile left margins ==== */
+            .title-logo {
+                margin-left: -0.60rem;
+            }
+            .date {
+                margin-left: 0rem;
+            }
+            /* ============================================ */
+
             html, body {
                 height: 100%;
                 overflow: hidden;
@@ -502,7 +511,6 @@ body::after {
                 order: 2;
                 width: auto;
                 max-width: 100%;
-                margin-left: -0.60rem;
                 margin-right: auto;
             }
 
@@ -628,15 +636,6 @@ body::after {
             color: var(--brown);
         }
  
-        .lang-sep {
-            color: var(--brown);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.7rem;
-            line-height: 1.2;
-            vertical-align: middle;
-            position: relative;
-            top: 1px;
-        }
             .rsvp-section {
                 padding: 5rem 1.5rem 2rem;
                 min-height: auto;
