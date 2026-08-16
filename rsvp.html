@@ -12,6 +12,7 @@
             --coral: #95390A;
             --brown: #AB623F;
             --dark: #2a2a2a;
+            --line-width: 1.2px;
             --light-gray: #e8e8e8;
             --beige: #e6dfd7;
         }
@@ -125,9 +126,10 @@ body::before {
             line-height: 1.3;
         }
 
-        .grid-divider {
+        /* Consistent horizontal rule styling */
+        hr, .grid-divider {
             border: 0;
-            height: 1px;
+            height: var(--line-width);
             background-color: rgba(149, 57, 10, 0.15);
             margin: 0;
         }
@@ -147,18 +149,19 @@ body::before {
         input, select, textarea {
             width: 100%;
             padding: 0.85rem 1rem;
-            border: 1px solid rgba(149, 57, 10, 0.25);
+            border: none;
+            border-bottom: var(--line-width) solid rgba(149, 57, 10, 0.15);
             background-color: #f1ede3;
             color: var(--dark);
             border-radius: 0;
             font-family: 'Inter', sans-serif;
             font-size: 0.95rem;
-            transition: all 0.3s ease;
+            transition: all 0.18s ease;
         }
 
         input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: var(--coral);
+            border-bottom-color: var(--coral);
             box-shadow: 0 0 0 3px rgba(149, 57, 10, 0.08);
         }
 
@@ -187,7 +190,7 @@ body::before {
             font-size: 0.92rem;
             text-transform: uppercase;
             letter-spacing: 0.12em;
-            border: 1px solid transparent;
+            border: var(--line-width) solid transparent;
             cursor: pointer;
             transition: all 0.3s ease;
             border-radius: 0;
@@ -205,7 +208,7 @@ body::before {
         .btn-primary {
             background-color: var(--coral);
             color: white;
-            border: 1px solid var(--coral);
+            border: var(--line-width) solid var(--coral);
         }
 
         .btn-primary:hover,
@@ -221,7 +224,7 @@ body::before {
             display: inline-flex !important;
             background-color: #e9dfd2 !important;
             color: var(--coral) !important;
-            border: 1px solid var(--coral) !important;
+            border: var(--line-width) solid var(--coral) !important;
             text-decoration: none !important;
         }
 
@@ -284,21 +287,28 @@ body::before {
         }
 
         .success-message h2 {
+            font-family: 'Courier Prime', monospace;
             font-size: 2rem;
+            font-weight: 700;
             margin-bottom: 1rem;
+            letter-spacing: 0.01em;
             color: var(--coral);
         }
 
         .success-message p {
-            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.125rem;
             color: var(--dark);
             margin-bottom: 2rem;
+            max-width: 52ch;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .form-error {
             display: none;
             background-color: rgba(149, 57, 10, 0.06);
-            border: 1px solid var(--coral);
+            border: var(--line-width) solid var(--coral);
             color: var(--coral);
             padding: 1rem;
             margin-bottom: 1.5rem;
@@ -407,22 +417,29 @@ body::before {
                 <input type="text" name="name" required>
             </div>
 
-            <hr class="grid-divider">
+            <hr id="hr-after-name" class="grid-divider">
 
             <div class="form-group">
                 <label class="lang-text" data-en="Will you attend?*" data-pl="Czy będziesz obecny/a?*" data-es="¿Asistirás?*"></label>
-                <select name="attendance" required>
+                <select id="attendance" name="attendance" required>
                     <option value="" class="lang-text" data-en="-- Select --" data-pl="-- Wybierz --" data-es="-- Seleccionar --"></option>
                     <option value="yes" class="lang-text" data-en="Yes!" data-pl="Tak!" data-es="¡Sí!"></option>
                     <option value="no" class="lang-text" data-en="Unfortunately I can't" data-pl="Niestety nie mogę" data-es="No, no puedo"></option>
                 </select>
             </div>
 
-            <hr class="grid-divider">
+            <hr id="hr-after-attendance" class="grid-divider">
 
-            <div class="form-group">
+            <div class="form-group" id="email-group">
+                <label class="lang-text" data-en="Email address*" data-pl="Adres e-mail*" data-es="Correo electrónico*"></label>
+                <input id="email" class="lang-text" type="email" name="email" placeholder="" data-en="name@example.com" data-pl="adres@przyklad.pl" data-es="correo@ejemplo.com">
+            </div>
+
+            <hr id="hr-after-email" class="grid-divider">
+
+            <div class="form-group" id="guests-group">
                 <label class="lang-text" data-en="Number of guests (including you)*" data-pl="Liczba osób (w tym Ty)*" data-es="Número de personas (contándote a ti)*"></label>
-                <select name="guests" required>
+                <select id="guests" name="guests" required>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -430,11 +447,11 @@ body::before {
                 </select>
             </div>
 
-            <hr class="grid-divider">
+            <hr id="hr-after-guests" class="grid-divider">
 
-            <div class="form-group">
+            <div class="form-group" id="diet-group">
                 <label class="lang-text" data-en="Dietary requirements or allergies" data-pl="Dieta wegetariańska, wegańska lub alergie?" data-es="¿Dieta vegetariana, vegana o allergies?"></label>
-                <textarea name="diet" rows="2"></textarea>
+                <textarea id="diet" name="diet" rows="2"></textarea>
             </div>
 
             <div class="form-footer">
@@ -505,6 +522,73 @@ body::before {
         document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang'))));
 
         setLanguage(getSavedLanguage());
+
+        // Toggle guests, email and dietary fields visibility when attendance is 'no'
+        const attendanceSelect = document.getElementById('attendance');
+        const guestsSelect = document.getElementById('guests');
+        const dietField = document.getElementById('diet');
+        const emailInput = document.getElementById('email');
+
+        const guestsGroup = document.getElementById('guests-group');
+        const dietGroup = document.getElementById('diet-group');
+        const emailGroup = document.getElementById('email-group');
+
+        const hrAfterEmail = document.getElementById('hr-after-email');
+        const hrAfterGuests = document.getElementById('hr-after-guests');
+        const hrAfterAttendance = document.getElementById('hr-after-attendance');
+
+        function updateAttendanceDependentFields() {
+            const val = attendanceSelect ? attendanceSelect.value : '';
+            const attending = val !== 'no' && val !== '';
+
+            if (guestsGroup) {
+                guestsGroup.style.display = attending ? '' : 'none';
+                guestsGroup.setAttribute('aria-hidden', attending ? 'false' : 'true');
+            }
+            if (dietGroup) {
+                dietGroup.style.display = attending ? '' : 'none';
+                dietGroup.setAttribute('aria-hidden', attending ? 'false' : 'true');
+            }
+            if (emailGroup) {
+                emailGroup.style.display = attending ? '' : 'none';
+                emailGroup.setAttribute('aria-hidden', attending ? 'false' : 'true');
+            }
+
+            // show/hide the divider line immediately after attendance only when attending
+            if (hrAfterAttendance) hrAfterAttendance.style.display = attending ? '' : 'none';
+            // hide the divider lines under hidden groups to avoid orphaned lines
+            if (hrAfterEmail) hrAfterEmail.style.display = attending ? '' : 'none';
+            if (hrAfterGuests) hrAfterGuests.style.display = attending ? '' : 'none';
+
+            if (guestsSelect) {
+                if (attending) {
+                    guestsSelect.setAttribute('required', 'required');
+                } else {
+                    guestsSelect.removeAttribute('required');
+                    guestsSelect.value = '';
+                }
+            }
+
+            if (dietField) {
+                if (!attending) {
+                    dietField.value = '';
+                }
+            }
+
+            if (emailInput) {
+                if (attending) {
+                    emailInput.setAttribute('required', 'required');
+                } else {
+                    emailInput.removeAttribute('required');
+                    emailInput.value = '';
+                }
+            }
+        }
+
+        if (attendanceSelect) {
+            attendanceSelect.addEventListener('change', updateAttendanceDependentFields);
+        }
+        updateAttendanceDependentFields();
 
         const form = document.getElementById('rsvp-form');
         const submitBtn = document.getElementById('submitBtn');
