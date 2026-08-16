@@ -32,7 +32,8 @@
             background-color:#f1ede3;
             color: var(--dark);
             line-height: 1.6;
-            min-height: 100vh;
+            /* Use dynamic viewport units on mobile to avoid extra scroll */
+            min-height: 100dvh;
             padding: 2rem;
             position: relative;
         }
@@ -330,7 +331,7 @@ body::before {
             }
             /* ============================================ */
 
-            body { padding: 1rem; }
+            body { padding: 1rem; min-height: 100dvh; overflow-y: auto; -webkit-overflow-scrolling: touch; }
  
             .container {
                 padding: 3rem 0.75rem 2rem 0.75rem;
