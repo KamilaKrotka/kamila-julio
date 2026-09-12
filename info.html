@@ -357,6 +357,8 @@ body::before {
                     <p style="margin-top: 1rem;">
                         <strong class="lang-text" data-en="Wedding Party" data-pl="Wesele" data-es="Banquete y Fiesta"></strong><br>
                         <a href="https://maps.app.goo.gl/BNmfxL95TtsJcveGA" target="_blank">Cal Cirera</a>
+                        <br>
+                        <span class="lang-text" style="display: block; margin-top: 0.75rem;" data-en="Please RSVP by December 15, 2026." data-pl="Prosimy o potwierdzenie przybycia do 15 grudnia." data-es="Se ruega confirmación antes del 15 de diciembre de 2026."></span>
                     </p>
                 </div>
             </div>
@@ -380,10 +382,54 @@ body::before {
                     <h2 class="lang-text" data-en="ADDITIONAL INFORMATION" data-pl="DODATKOWE INFORMACJE" data-es="INFORMACIÓN ADICIONAL"></h2>
                 </div>
                 <div class="grid-content">
-                    <p class="lang-text" data-en="Your presence at our wedding is the greatest gift of all! However, if you would like to contribute to our honeymoon fund, you can do so here:
+                    <p class="lang-text" data-html="true" data-en="Your presence at our wedding is the greatest gift of all! However, if you would like to contribute to our honeymoon fund, you can do so here:
+                   
+                    <b>GBP account:</b>
+                    Julio Candela
+                    04-00-05
+                    77662308
+                    GB45 MONZ 0400 0577 6623 08
+
+                    -
+                    
+                    <b>Soles account:</b>
+                    Julio V. Candela S.
+                    BCP Soles: 19299063432071
+                    CCI: 00219219906343207138
+
+                    -
+
+                    <b>EUR account:</b>
+                    Kamila Krotka
+                    IBAN: BE50 9051 2098 9218
+                    Swift/BIC: TRWIBEB1XXX
+
+                    -
  
 PS Since we'll be celebrating in the garden and we want you to feel comfortable, we recommend skipping the high heels. Think about some flats or block heels instead!" data-pl="Jako że impreza odbędzie się w ogrodzie i chcemy, żebyście czuli się komfortowo, zachęcamy do zostawienia szpilek w domu. Postawcie raczej na płaskie buty lub stabilny słupek!" data-es="¡Tu presencia en nuestra boda es el mejor regalo de todos! Sin embargo, si deseas contribuir a nuestra luna de miel, puedes hacerlo aquí:
- 
+
+                    <b>Cuenta en GBP:</b>
+                    Julio Candela
+                    04-00-05
+                    77662308
+                    GB45 MONZ 0400 0577 6623 08
+
+                    -
+
+                    <b>Cuenta en soles:</b>
+                    Julio V. Candela S.
+                    BCP Soles: 19299063432071
+                    CCI: 00219219906343207138
+
+                    -
+
+                    <b>Cuenta en EUR:</b>
+                    Kamila Krotka
+                    IBAN: BE50 9051 2098 9218
+                    Swift/BIC: TRWIBEB1XXX
+
+                    -
+
 P.D. Como la fiesta será en el jardín y queremos que se sientan cómodos, les recomendamos evitar los tacones altos. ¡Opten mejor por unos zapatos planos o de tacón ancho!" style="white-space: pre-line;"></p>
                 </div>
             </div>
@@ -450,7 +496,13 @@ P.D. Como la fiesta será en el jardín y queremos que se sientan cómodos, les 
 
             document.querySelectorAll('.lang-text').forEach(el => {
                 const text = el.getAttribute(`data-${lang}`);
-                if (text) el.textContent = text;
+                if (text) {
+                    if (el.dataset.html === 'true') {
+                        el.innerHTML = text;
+                    } else {
+                        el.textContent = text;
+                    }
+                }
             });
 
             updateLangLinks(lang);
